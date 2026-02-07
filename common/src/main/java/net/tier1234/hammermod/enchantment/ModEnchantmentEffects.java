@@ -1,38 +1,31 @@
 package net.tier1234.hammermod.enchantment;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
-import net.tier1234.hammermod.Constants;
-import net.tier1234.hammermod.enchantment.custom.DiggingEnchantmentEffect;
-import net.tier1234.hammermod.enchantment.custom.ExcavatorEnchantmentEffect;
-import net.tier1234.hammermod.enchantment.custom.VeinMinerEnchantmentEffect;
+import com.mrcrayfish.framework.api.registry.RegistryContainer;
 
-import java.util.function.Supplier;
-
+@RegistryContainer
 public class ModEnchantmentEffects {
+
+    public static void init() {}
 /*
-    public static final DeferredRegister<MapCodec<? extends EnchantmentEntityEffect>> ENCHANTMENT_EFFECTS =
-            DeferredRegister.create(Registries.ENCHANTMENT_ENTITY_EFFECT_TYPE, Constants.MOD_ID);
+    public static final RegistryEntry<MapCodec<? extends EnchantmentEntityEffect>> DIGGING =
+            RegistryEntry.custom(
+                    BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,
+                    Constants.id("digging"),
+                    () -> DiggingEnchantmentEffect.CODEC
+            );
 
-    public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> DIGGING =
-            ENCHANTMENT_EFFECTS.register("digging", () -> DiggingEnchantmentEffect.CODEC);
+    public static final RegistryEntry<MapCodec<? extends EnchantmentEntityEffect>> EXCAVATOR =
+            RegistryEntry.custom(
+                    BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,
+                    Constants.id("excavator"),
+                    () -> ExcavatorEnchantmentEffect.CODEC
+            );
 
-    // TODO
-    //  public static final Supplier<MapCodec<? extends  EnchantmentEntityEffect>> AUTOSMELT =
-    //            ENCHANTMENT_EFFECTS.register("autosmelt", ()-> AutoSmeltEnchantmentEffect.CODEC);
-
-    public static final Supplier<MapCodec<? extends  EnchantmentEntityEffect>> EXCAVATOR =
-            ENCHANTMENT_EFFECTS.register("excavator",()-> ExcavatorEnchantmentEffect.CODEC);
-
-
-    public static final Supplier<MapCodec<? extends  EnchantmentEntityEffect>> VEINMINER =
-            ENCHANTMENT_EFFECTS.register("veinminer",()-> VeinMinerEnchantmentEffect.CODEC);
-
-
-    public static void register(IEventBus eventBus) {
-        ENCHANTMENT_EFFECTS.register(eventBus);
-    }
-
- */
+    public static final RegistryEntry<MapCodec<? extends EnchantmentEntityEffect>> VEINMINER =
+            RegistryEntry.custom(
+                    BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,
+                    Constants.id("veinminer"),
+                    () -> VeinMinerEnchantmentEffect.CODEC
+            );
+    */
 }

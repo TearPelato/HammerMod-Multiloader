@@ -26,7 +26,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @EventBusSubscriber(modid = Constants.MOD_ID, value = Dist.CLIENT)
-public class ModEvents {
+public class NeoForgeModEvents {
     private static final Set<BlockPos> HARVESTED_BLOCKS = new HashSet<>();
 
     // Done with the help of https://github.com/CoFH/CoFHCore/blob/1.19.x/src/main/java/cofh/core/event/AreaEffectEvents.java

@@ -80,7 +80,4 @@ public class DiggingEnchantmentEffect implements EnchantmentEntityEffect {
         return CODEC;
     }
 
-    public boolean allowedInCreativeTab(Item book, CreativeModeTab tab) {
-        return tab == ModCreativeTabs.HAMMER_MOD_ITEMS;
-    }
 }
