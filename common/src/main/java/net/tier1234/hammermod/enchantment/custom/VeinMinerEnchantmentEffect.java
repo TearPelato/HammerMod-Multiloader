@@ -14,12 +14,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import net.tier1234.hammermod.Config;
 
 
 import java.util.ArrayDeque;
 import java.util.HashSet;
 import java.util.Queue;
 import java.util.Set;
+
 
 public class VeinMinerEnchantmentEffect implements EnchantmentEntityEffect {
 
@@ -41,11 +43,7 @@ public class VeinMinerEnchantmentEffect implements EnchantmentEntityEffect {
         Block targetBlock = startState.getBlock();
         if (startState.isAir() || startState.getDestroySpeed(serverLevel, startPos) < 0)
             return;
-        int maxBlocks = 10;
-        //TODO
-        // Config.getveinminergroup();
-
-        // Raytrace (opzionale, per coerenza visiva)
+        int maxBlocks = Config.CLIENT.veinminerRange.get();
         Vec3 eyePos = user.getEyePosition(1f);
         Vec3 lookVec = user.getViewVector(1f).scale(6f);
         BlockHitResult traceResult = serverLevel.clip(new ClipContext(
@@ -94,4 +92,3 @@ public class VeinMinerEnchantmentEffect implements EnchantmentEntityEffect {
         return CODEC;
     }
 }
-
