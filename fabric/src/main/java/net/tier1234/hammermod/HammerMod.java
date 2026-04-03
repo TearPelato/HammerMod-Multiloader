@@ -1,10 +1,15 @@
 package net.tier1234.hammermod;
 
+import com.mrcrayfish.framework.FrameworkSetup;
 import net.fabricmc.api.ModInitializer;
 import net.tier1234.hammermod.enchantment.ModEnchantmentEffects;
 import net.tier1234.hammermod.event.FabricModEvents;
 
 public class HammerMod implements ModInitializer {
+
+    public HammerMod() {
+        FrameworkSetup.run();
+    }
 
     @Override
     public void onInitialize() {

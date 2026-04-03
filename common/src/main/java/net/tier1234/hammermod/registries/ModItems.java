@@ -17,7 +17,7 @@ public class ModItems {
 
     /**
      *Hammers Registries:
-     * Using Framework {@link RegistryEntry} to registry everything on multiloade
+     * Using Framework {@link RegistryEntry} to registry everything on multiloader
      * */
 //Base Hammers Registries
     public static final RegistryEntry<HammerItem> STONE_HAMMER = RegistryEntry.item(Constants.id("stone_hammer"),
