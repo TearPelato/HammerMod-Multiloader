@@ -1,10 +1,33 @@
 package net.tier1234.hammermod.enchantment.custom;
 
-public class AutoSmeltEnchantmentEffect
-       // implements EnchantmentEntityEffect
-{
+import com.mojang.serialization.MapCodec;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
+import net.minecraft.world.item.enchantment.EnchantedItemInUse;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LevelEvent;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
+import net.tier1234.hammermod.enchantment.custom.helper.AutoSmeltHelper;
+import org.jetbrains.annotations.Nullable;
 
-  /*  public static final MapCodec<AutoSmeltEnchantmentEffect> CODEC =
+import java.util.ArrayList;
+import java.util.List;
+
+public class AutoSmeltEnchantmentEffect implements EnchantmentEntityEffect {
+    public static final MapCodec<AutoSmeltEnchantmentEffect> CODEC =
             MapCodec.unit(AutoSmeltEnchantmentEffect::new);
 
     @Override
@@ -21,14 +44,18 @@ public class AutoSmeltEnchantmentEffect
 
         ItemStack tool = itemInUse.itemStack();
 
-        if (tool.getEnchantmentLevel((Holder<Enchantment>) Enchantments.SILK_TOUCH) > 0) {
+        var silkTouchHolder = level.registryAccess()
+                .registryOrThrow(Registries.ENCHANTMENT)
+                .getHolder(Enchantments.SILK_TOUCH)
+                .orElse(null);
+
+        if (silkTouchHolder != null && EnchantmentHelper.getItemEnchantmentLevel(silkTouchHolder, tool) > 0) {
             return;
         }
 
         BlockPos pos = BlockPos.containing(origin);
         BlockState state = level.getBlockState(pos);
         BlockEntity blockEntity = level.getBlockEntity(pos);
-
 
         if (state.isAir() || state.getDestroySpeed(level, pos) < 0) {
             return;
@@ -64,12 +91,11 @@ public class AutoSmeltEnchantmentEffect
         level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
         level.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, pos, Block.getId(state));
 
-        EventHooks.onPlayerDestroyItem(player, tool, player.getUsedItemHand());
-
+        AutoSmeltHelper.damageItem(tool, player);
     }
 
-    public ItemStack trySmeltBlock(ServerLevel level, BlockState state, ItemStack tool, @Nullable BlockEntity blockEntity, Player player) {
-        // 1. Creiamo un input usando il BLOC CO come se fosse nello slot del forno
+    public ItemStack trySmeltBlock(ServerLevel level, BlockState state, ItemStack tool,
+                                   @Nullable BlockEntity blockEntity, Player player) {
         SingleRecipeInput recipeInput = new SingleRecipeInput(state.getBlock().asItem().getDefaultInstance());
 
         var recipeOpt = level.getRecipeManager()
@@ -78,7 +104,6 @@ public class AutoSmeltEnchantmentEffect
         if (recipeOpt.isPresent()) {
             var recipe = recipeOpt.get().value();
 
-            // Assembliamo il risultato smeltato
             ItemStack smeltResult = recipe.assemble(recipeInput, level.registryAccess());
 
             Item itemOfBlock = state.getBlock().asItem();
@@ -102,5 +127,5 @@ public class AutoSmeltEnchantmentEffect
     @Override
     public MapCodec<? extends EnchantmentEntityEffect> codec() {
         return CODEC;
-    }*/
+    }
 }

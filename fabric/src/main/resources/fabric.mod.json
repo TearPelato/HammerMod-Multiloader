@@ -36,6 +36,10 @@
         "another-mod": "*"
     },
     "custom": {
+        "configured": {
+            "configs": [],
+            "background": "minecraft:textures/block/dirt.png"
+        },
         "framework": {
             "containers": [
                 "net.tier1234.hammermod.registries"

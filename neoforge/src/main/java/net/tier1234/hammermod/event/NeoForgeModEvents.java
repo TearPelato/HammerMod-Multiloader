@@ -8,27 +8,36 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LevelEvent;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.tier1234.hammermod.Constants;
-import net.tier1234.hammermod.registries.ModEnchantments;
+import net.tier1234.hammermod.enchantment.custom.AutoSmeltEnchantmentEffect;
 import net.tier1234.hammermod.enchantment.custom.DiggingEnchantmentEffect;
 import net.tier1234.hammermod.enchantment.custom.ExcavatorEnchantmentEffect;
 import net.tier1234.hammermod.enchantment.custom.VeinMinerEnchantmentEffect;
 import net.tier1234.hammermod.item.custom.HammerItem;
 import net.tier1234.hammermod.item.custom.HammerItem2x2;
 import net.tier1234.hammermod.item.custom.HammerItem5x5;
+import net.tier1234.hammermod.registries.ModEnchantments;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @EventBusSubscriber(modid = Constants.MOD_ID, value = Dist.CLIENT)
 public class NeoForgeModEvents {
     private static final Set<BlockPos> HARVESTED_BLOCKS = new HashSet<>();
 
+    // Done with the help of https://github.com/CoFH/CoFHCore/blob/1.19.x/src/main/java/cofh/core/event/AreaEffectEvents.java
+    // Don't be a jerk License
     @SubscribeEvent
     public static void onHammerUsage(BlockEvent.BreakEvent event) {
         Player player = event.getPlayer();
@@ -158,24 +167,6 @@ public class NeoForgeModEvents {
         effect.apply((ServerLevel) level, enchantLevel, null, player, pos.getCenter());
     }
 
-    // TODO  @SubscribeEvent
-//    public static void onBlockBreakAutoSmelt(BlockEvent.BreakEvent event) {
-//        if (!(event.getPlayer() instanceof ServerPlayer player)) return;
-//        Level level = player.level();
-//        if (level.isClientSide) return;
-//        ItemStack tool = player.getMainHandItem();
-//        var enchantmentHolder = level.registryAccess()
-//                .registryOrThrow(Registries.ENCHANTMENT)
-//                .getHolder(ModEnchantments.AUTO_SMELT)
-//                .orElse(null);
-//        if (enchantmentHolder == null) return;
-//        int enchantLevel = EnchantmentHelper.getItemEnchantmentLevel(enchantmentHolder, tool);
-//        if (enchantLevel <= 0) return
-//        BlockPos pos = event.getPos();
-//        AutoSmeltEnchantmentEffect effect = new AutoSmeltEnchantmentEffect();
-//        effect.apply((ServerLevel) level, enchantLevel, null, player, pos.getCenter());
-//    }
-
 
     @SubscribeEvent
     public static void onBlockBreakVeinMiner(BlockEvent.BreakEvent event) {
@@ -186,7 +177,6 @@ public class NeoForgeModEvents {
 
         ItemStack tool = player.getMainHandItem();
 
-        // Recupera il riferimento all'enchantment registrato
         var enchantmentHolder = level.registryAccess()
                 .registryOrThrow(Registries.ENCHANTMENT)
                 .getHolder(ModEnchantments.VEINMINER)
@@ -203,5 +193,66 @@ public class NeoForgeModEvents {
         VeinMinerEnchantmentEffect effect = new VeinMinerEnchantmentEffect();
         effect.apply((ServerLevel) level, enchantLevel, null, player, pos.getCenter());
     }
+
+    @SubscribeEvent
+    public static void onBlockBreakAutoSmelt(BlockEvent.BreakEvent event) {
+        Player player = event.getPlayer();
+        if (player == null || player.level().isClientSide) return;
+
+        ServerPlayer serverPlayer = (ServerPlayer) player;
+        ServerLevel level = (ServerLevel) event.getLevel();
+
+        ItemStack tool = serverPlayer.getMainHandItem();
+
+        var enchantHolder = level.registryAccess()
+                .registryOrThrow(Registries.ENCHANTMENT)
+                .getHolder(ModEnchantments.AUTOSMELT)
+                .orElse(null);
+
+        if (enchantHolder == null) return;
+
+        int level2 = EnchantmentHelper.getTagEnchantmentLevel(enchantHolder, tool);
+        if (level2 <= 0) return;
+
+
+        BlockPos pos = event.getPos();
+        BlockState state = event.getState();
+
+        if (state.isAir() || state.getDestroySpeed(level, pos) < 0) return;
+
+
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+
+        List<ItemStack> drops = Block.getDrops(
+                state,
+                level,
+                pos,
+                blockEntity,
+                serverPlayer,
+                tool
+        );
+
+        if (drops.isEmpty()) return;
+
+        List<ItemStack> finalDrops = new ArrayList<>();
+
+        AutoSmeltEnchantmentEffect autosmeltEffect = new AutoSmeltEnchantmentEffect();
+
+        for (ItemStack drop : drops) {
+            ItemStack smelted = autosmeltEffect.trySmeltBlock(level, state, tool, blockEntity, player);
+            if (!smelted.isEmpty()) {
+                finalDrops.add(smelted);
+            }
+        }
+
+        for (ItemStack toDrop : finalDrops) {
+            Block.popResource(level, pos, toDrop);
+        }
+
+        level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
+        level.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, pos, Block.getId(state));
+
+    }
+
 
 }

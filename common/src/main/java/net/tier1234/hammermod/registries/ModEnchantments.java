@@ -10,6 +10,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.EnchantmentTarget;
 import net.tier1234.hammermod.Constants;
+import net.tier1234.hammermod.enchantment.custom.AutoSmeltEnchantmentEffect;
 import net.tier1234.hammermod.enchantment.custom.DiggingEnchantmentEffect;
 import net.tier1234.hammermod.enchantment.custom.ExcavatorEnchantmentEffect;
 import net.tier1234.hammermod.enchantment.custom.VeinMinerEnchantmentEffect;
@@ -89,7 +90,7 @@ public class ModEnchantments {
                 new VeinMinerEnchantmentEffect()
         ));
 
-        /*register(context, AUTOSMELT, Enchantment.enchantment(Enchantment.definition(
+        register(context, AUTOSMELT, Enchantment.enchantment(Enchantment.definition(
                 items.getOrThrow(ItemTags.MINING_ENCHANTABLE),
                 items.getOrThrow(ItemTags.PICKAXES),
                 1,
@@ -103,7 +104,7 @@ public class ModEnchantments {
                 EnchantmentTarget.ATTACKER,
                 EnchantmentTarget.VICTIM,
                 new AutoSmeltEnchantmentEffect()
-        ));*/
+        ));
 
     }
 
