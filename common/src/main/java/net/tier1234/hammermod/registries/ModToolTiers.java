@@ -1,4 +1,4 @@
-package net.tier1234.hammermod.item;
+package net.tier1234.hammermod.registries;
 
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;

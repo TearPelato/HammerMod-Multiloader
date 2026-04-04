@@ -2,21 +2,25 @@ package net.tier1234.hammermod.event;
 
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.tier1234.hammermod.enchantment.ModEnchantments;
+import net.tier1234.hammermod.Config;
 import net.tier1234.hammermod.enchantment.custom.DiggingEnchantmentEffect;
 import net.tier1234.hammermod.enchantment.custom.ExcavatorEnchantmentEffect;
-import net.tier1234.hammermod.enchantment.custom.VeinMinerEnchantmentEffect;
 import net.tier1234.hammermod.item.custom.HammerItem;
 import net.tier1234.hammermod.item.custom.HammerItem2x2;
 import net.tier1234.hammermod.item.custom.HammerItem5x5;
+import net.tier1234.hammermod.registries.ModEnchantments;
 
+import java.util.ArrayDeque;
 import java.util.HashSet;
+import java.util.Queue;
 import java.util.Set;
 
 public class FabricModEvents {
@@ -53,9 +57,6 @@ public class FabricModEvents {
                 }
             }
 
-            /* =======================
-               HAMMER 2x2
-               ======================= */
             if (mainHandItem.getItem() instanceof HammerItem2x2 hammer2x2) {
 
                 if (HARVESTED_BLOCKS.contains(pos)) return true;
@@ -74,9 +75,6 @@ public class FabricModEvents {
                 }
             }
 
-            /* =======================
-               HAMMER 5x5
-               ======================= */
             if (mainHandItem.getItem() instanceof HammerItem5x5 hammer5x5) {
 
                 if (HARVESTED_BLOCKS.contains(pos)) return true;
@@ -96,9 +94,7 @@ public class FabricModEvents {
                 }
             }
 
-            /* =======================
-               DIGGING ENCHANT
-               ======================= */
+            // ============ DIGGING ENCHANTMENT ============
             var diggingHolder = world.registryAccess()
                     .registryOrThrow(Registries.ENCHANTMENT)
                     .getHolder(ModEnchantments.DIGGING)
@@ -112,9 +108,7 @@ public class FabricModEvents {
                 }
             }
 
-            /* =======================
-               EXCAVATOR ENCHANT
-               ======================= */
+            // ============ EXCAVATOR ENCHANTMENT ============
             var excavatorHolder = world.registryAccess()
                     .registryOrThrow(Registries.ENCHANTMENT)
                     .getHolder(ModEnchantments.EXCAVATOR)
@@ -124,22 +118,6 @@ public class FabricModEvents {
                 int level = EnchantmentHelper.getItemEnchantmentLevel(excavatorHolder, mainHandItem);
                 if (level > 0) {
                     new ExcavatorEnchantmentEffect()
-                            .apply((ServerLevel) world, level, null, serverPlayer, pos.getCenter());
-                }
-            }
-
-            /* =======================
-               VEIN MINER ENCHANT
-               ======================= */
-            var veinMinerHolder = world.registryAccess()
-                    .registryOrThrow(Registries.ENCHANTMENT)
-                    .getHolder(ModEnchantments.VEINMINER)
-                    .orElse(null);
-
-            if (veinMinerHolder != null) {
-                int level = EnchantmentHelper.getItemEnchantmentLevel(veinMinerHolder, mainHandItem);
-                if (level > 0) {
-                    new VeinMinerEnchantmentEffect()
                             .apply((ServerLevel) world, level, null, serverPlayer, pos.getCenter());
                 }
             }

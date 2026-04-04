@@ -1,4 +1,4 @@
-package net.tier1234.hammermod.enchantment;
+package net.tier1234.hammermod.registries;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -18,7 +18,7 @@ public class ModEnchantments {
 
     public static final ResourceKey<Enchantment> DIGGING = ResourceKey.create(
             Registries.ENCHANTMENT,
-             ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "digging")
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "digging")
     );
 
 
@@ -29,6 +29,10 @@ public class ModEnchantments {
     public static final ResourceKey<Enchantment> VEINMINER = ResourceKey.create(
             Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "veinminer")
+    );
+    public static final ResourceKey<Enchantment> AUTOSMELT = ResourceKey.create(
+            Registries.ENCHANTMENT,
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "autosmelt")
     );
 
 
@@ -84,6 +88,22 @@ public class ModEnchantments {
                 EnchantmentTarget.VICTIM,
                 new VeinMinerEnchantmentEffect()
         ));
+
+        /*register(context, AUTOSMELT, Enchantment.enchantment(Enchantment.definition(
+                items.getOrThrow(ItemTags.MINING_ENCHANTABLE),
+                items.getOrThrow(ItemTags.PICKAXES),
+                1,
+                1,
+                Enchantment.dynamicCost(30, 10),
+                Enchantment.dynamicCost(70, 10),
+                8,
+                EquipmentSlotGroup.MAINHAND
+        )).withEffect(
+                EnchantmentEffectComponents.POST_ATTACK,
+                EnchantmentTarget.ATTACKER,
+                EnchantmentTarget.VICTIM,
+                new AutoSmeltEnchantmentEffect()
+        ));*/
 
     }
 

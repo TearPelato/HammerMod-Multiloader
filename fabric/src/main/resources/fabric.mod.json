@@ -17,6 +17,9 @@
     "entrypoints": {
         "main": [
             "net.tier1234.hammermod.HammerMod"
+        ],
+        "fabric-datagen": [
+            "net.tier1234.hammermod.DataGenerators"
         ]
     },
     "mixins": [
@@ -36,10 +39,10 @@
         "framework": {
             "containers": [
                 "net.tier1234.hammermod.registries"
+            ],
+            "configs": [
+                "net.tier1234.hammermod.Config"
             ]
         }
- },
-    "configs": [
-        "net.tier1234.hammermod.Config"
-    ]
+ }
 }
