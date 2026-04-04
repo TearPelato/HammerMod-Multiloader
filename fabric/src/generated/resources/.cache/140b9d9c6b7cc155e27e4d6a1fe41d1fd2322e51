@@ -1,0 +1,9 @@
+// 1.21.1	2026-04-04T15:54:02.9567582	Hammer Additions/Tags for minecraft:block
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data\minecraft\tags\block\needs_stone_tool.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data\minecraft\tags\block\incorrect_for_iron_tool.json
+781d959bb6bbea7b36ae6b2d4a71ced43fd662b9 data\hammer_mod\tags\block\needs_amethyst_tool.json
+32b13946c4cd1f944b029659ccce5fcb2adad4ff data\hammer_mod\tags\block\needs_copper_tool.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data\minecraft\tags\block\needs_iron_tool.json
+6cba383d3cd690af24f1ed063271bdc60310aa56 data\hammer_mod\tags\block\incorrect_for_amethyst_tool.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data\minecraft\tags\block\incorrect_for_stone_tool.json
+e5ac9107c4b0fb079adb1cdd27f966911d6a5428 data\hammer_mod\tags\block\incorrect_for_copper_tool.json

@@ -124,5 +124,8 @@ public static final RegistryEntry<HammerItem2x2> TINY_STONE_HAMMER = RegistryEnt
     public static final RegistryEntry<Item> GIANT_AMETHYST_HEAD = RegistryEntry.item(Constants.id("giant_amethyst_head"),
             ()-> new Item(new Item.Properties()));
 
+    public static final RegistryEntry<Item> TINY_STICK = RegistryEntry.item(Constants.id("tiny_stick"),
+            ()-> new Item(new Item.Properties()));
+
 
 }

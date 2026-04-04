@@ -1,0 +1,11 @@
+{
+  "values": [
+    "hammer_mod:stone_hammer",
+    "hammer_mod:copper_hammer",
+    "hammer_mod:iron_hammer",
+    "hammer_mod:gold_hammer",
+    "hammer_mod:diamond_hammer",
+    "hammer_mod:netherite_hammer",
+    "hammer_mod:amethyst_hammer"
+  ]
+}

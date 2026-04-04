@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "hammer_mod:tiny_stick"
+  },
+  "base": {
+    "item": "hammer_mod:diamond_head"
+  },
+  "result": {
+    "count": 1,
+    "id": "hammer_mod:tiny_diamond_hammer"
+  },
+  "template": {
+    "item": "hammer_mod:hammer_smithing_template"
+  }
+}

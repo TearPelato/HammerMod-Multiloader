@@ -31,6 +31,7 @@ public class ModCreativeTabs {
             output.accept(ModItems.GIANT_NETHERITE_HEAD.get());
 
            output.accept(ModItems.HAMEMR_SMITHING_TEMPLATE.get());
+           output.accept(ModItems.TINY_STICK.get());
         });
     });
 

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:stick"
+  },
+  "base": {
+    "item": "hammer_mod:giant_gold_head"
+  },
+  "result": {
+    "count": 1,
+    "id": "hammer_mod:giant_gold_hammer"
+  },
+  "template": {
+    "item": "hammer_mod:hammer_smithing_template"
+  }
+}

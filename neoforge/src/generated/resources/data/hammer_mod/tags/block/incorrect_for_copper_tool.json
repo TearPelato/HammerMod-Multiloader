@@ -1,0 +1,8 @@
+{
+  "remove": [
+    "#hammer_mod:needs_copper_tool"
+  ],
+  "values": [
+    "#minecraft:incorrect_for_iron_tool"
+  ]
+}

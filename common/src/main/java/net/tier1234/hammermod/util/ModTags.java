@@ -1,22 +1,24 @@
 package net.tier1234.hammermod.util;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.tier1234.hammermod.Constants;
 
+
 public class ModTags {
-   /* public static class Blocks {
+
+    public static class Blocks {
         public static final TagKey<Block> NEEDS_AMETHYST_TOOL = createTag("needs_amethyst_tool");
         public static final TagKey<Block> NEEDS_COPPER_TOOL = createTag("needs_copper_tool");
         public static final TagKey<Block> INCORRECT_FOR_AMETHYST_TOOL = createTag("incorrect_for_amethyst_tool");
         public static final TagKey<Block> INCORRECT_FOR_COPPER_TOOL = createTag("incorrect_for_copper_tool");
 
         private static TagKey<Block> createTag(String name) {
-            return BlockTags.create(Constants.id(name));
+            return TagKey.create(Registries.BLOCK,
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
         }
     }
 
@@ -27,7 +29,8 @@ public class ModTags {
         public static final TagKey<Item> HAMMERS = createTag("hammers");
 
         private static TagKey<Item> createTag(String name) {
-            return ItemTags.create(ResourceLocation.fromNamespaceAndPath(HammerAdditions.MOD_ID, name));
+            return TagKey.create(Registries.ITEM,
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
         }
-    }*/
+    }
 }
