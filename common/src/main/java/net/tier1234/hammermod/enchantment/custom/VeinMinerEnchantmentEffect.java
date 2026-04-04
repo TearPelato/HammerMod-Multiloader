@@ -35,7 +35,7 @@ public class VeinMinerEnchantmentEffect implements EnchantmentEntityEffect {
                       Entity entity,
                       Vec3 vec3) {
 
-        if (enchantmentLevel <= 0 || serverLevel.isClientSide) return;
+        if (enchantmentLevel <= 0 || serverLevel.isClientSide()) return;
         if (!(entity instanceof LivingEntity user)) return;
 
         BlockPos startPos = BlockPos.containing(vec3);

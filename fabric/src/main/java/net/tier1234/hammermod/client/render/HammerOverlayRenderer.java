@@ -4,12 +4,10 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
-import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.LevelRenderer;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
@@ -55,7 +53,7 @@ public class HammerOverlayRenderer {
         PoseStack poseStack = context.matrixStack();
         Vec3 camPos = context.camera().getPosition();
         VertexConsumer vertexConsumer = context.consumers()
-                .getBuffer(RenderType.lines());
+                .getBuffer(RenderTypes.lines());
 
         for (BlockPos pos : area) {
             BlockState state = mc.level.getBlockState(pos);

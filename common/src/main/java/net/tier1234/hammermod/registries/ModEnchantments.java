@@ -2,8 +2,8 @@ package net.tier1234.hammermod.registries;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -19,21 +19,21 @@ public class ModEnchantments {
 
     public static final ResourceKey<Enchantment> DIGGING = ResourceKey.create(
             Registries.ENCHANTMENT,
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "digging")
+            Identifier.fromNamespaceAndPath(Constants.MOD_ID, "digging")
     );
 
 
     public static final ResourceKey<Enchantment> EXCAVATOR = ResourceKey.create(
             Registries.ENCHANTMENT,
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "excavator")
+            Identifier.fromNamespaceAndPath(Constants.MOD_ID, "excavator")
     );
     public static final ResourceKey<Enchantment> VEINMINER = ResourceKey.create(
             Registries.ENCHANTMENT,
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "veinminer")
+            Identifier.fromNamespaceAndPath(Constants.MOD_ID, "veinminer")
     );
     public static final ResourceKey<Enchantment> AUTOSMELT = ResourceKey.create(
             Registries.ENCHANTMENT,
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "autosmelt")
+            Identifier.fromNamespaceAndPath(Constants.MOD_ID, "autosmelt")
     );
 
 
@@ -110,6 +110,6 @@ public class ModEnchantments {
 
     private static void register(BootstrapContext<Enchantment> registry, ResourceKey<Enchantment> key,
                                  Enchantment.Builder builder) {
-        registry.register(key, builder.build(key.location()));
+        registry.register(key, builder.build(key.identifier()));
     }
 }

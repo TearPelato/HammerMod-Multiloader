@@ -126,11 +126,11 @@ public class NeoForgeModEvents {
         if (!(event.getPlayer() instanceof ServerPlayer player)) return;
 
         Level level = player.level();
-        if (level.isClientSide) return;
+        if (level.isClientSide()) return;
 
         ItemStack tool = player.getMainHandItem();
         var enchantmentHolder = level.registryAccess()
-                .registryOrThrow(Registries.ENCHANTMENT)
+                .lookupOrThrow(Registries.ENCHANTMENT)
                 .getHolder(ModEnchantments.DIGGING)
                 .orElse(null);
 
@@ -149,11 +149,11 @@ public class NeoForgeModEvents {
         if (!(event.getPlayer() instanceof ServerPlayer player)) return;
 
         Level level = player.level();
-        if (level.isClientSide) return;
+        if (level.isClientSide()) return;
 
         ItemStack tool = player.getMainHandItem();
         var enchantmentHolder = level.registryAccess()
-                .registryOrThrow(Registries.ENCHANTMENT)
+                .lookupOrThrow(Registries.ENCHANTMENT)
                 .getHolder(ModEnchantments.EXCAVATOR)
                 .orElse(null);
 
@@ -173,12 +173,12 @@ public class NeoForgeModEvents {
         if (!(event.getPlayer() instanceof ServerPlayer player)) return;
 
         Level level = player.level();
-        if (level.isClientSide) return;
+        if (level.isClientSide()) return;
 
         ItemStack tool = player.getMainHandItem();
 
         var enchantmentHolder = level.registryAccess()
-                .registryOrThrow(Registries.ENCHANTMENT)
+                .lookupOrThrow(Registries.ENCHANTMENT)
                 .getHolder(ModEnchantments.VEINMINER)
                 .orElse(null);
 
@@ -197,7 +197,7 @@ public class NeoForgeModEvents {
     @SubscribeEvent
     public static void onBlockBreakAutoSmelt(BlockEvent.BreakEvent event) {
         Player player = event.getPlayer();
-        if (player == null || player.level().isClientSide) return;
+        if (player == null || player.level().isClientSide()) return;
 
         ServerPlayer serverPlayer = (ServerPlayer) player;
         ServerLevel level = (ServerLevel) event.getLevel();
@@ -205,7 +205,7 @@ public class NeoForgeModEvents {
         ItemStack tool = serverPlayer.getMainHandItem();
 
         var enchantHolder = level.registryAccess()
-                .registryOrThrow(Registries.ENCHANTMENT)
+                .lookupOrThrow(Registries.ENCHANTMENT)
                 .getHolder(ModEnchantments.AUTOSMELT)
                 .orElse(null);
 

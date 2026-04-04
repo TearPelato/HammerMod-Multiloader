@@ -1,25 +1,26 @@
 package net.tier1234.hammermod.item.custom;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
-public class HammerItem2x2 extends DiggerItem {
-    public HammerItem2x2(Tier tier, Properties properties) {
-        super(tier, BlockTags.MINEABLE_WITH_PICKAXE, properties);
+public class HammerItem2x2 extends HammerItem {
+    public HammerItem2x2(Properties properties) {
+        super(properties);
     }
     // Inside HammerItem class
     public static List<BlockPos> getBlocksToBeDestroyed(BlockPos initialBlockPos, ServerPlayer player) {
@@ -58,17 +59,18 @@ public class HammerItem2x2 extends DiggerItem {
 
         return positions;
     }
+
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        if(Screen.hasShiftDown()) {
-           tooltipComponents.add(Component.translatable("tooltip.hammer_mod.hammer2x2.shift_down"));
+    public void appendHoverText(ItemStack pStack, TooltipContext pContext, TooltipDisplay tooltipDisplay, Consumer<Component> components, TooltipFlag tooltipFlag) {
+        if(Minecraft.getInstance().hasShiftDown()) {
+            components.accept(Component.translatable("tooltip.hammer_mod.hammer2x2.shift_down"));
         } else {
-           tooltipComponents.add(Component.translatable("tooltip.hammer_mod.hammer2x2"));
+            components.accept(Component.translatable("tooltip.hammer_mod.hammer2x2"));
         }
 
 
 
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        super.appendHoverText(pStack, pContext, tooltipDisplay, components, tooltipFlag);
     }
 }
 

@@ -10,10 +10,6 @@ neoForge {
     if (at.exists()) {
         accessTransformers.from(at.absolutePath)
     }
-    parchment {
-        minecraftVersion = parchment_minecraft
-        mappingsVersion = parchment_version
-    }
     runs {
         configureEach {
             systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
@@ -23,7 +19,7 @@ neoForge {
             client()
         }
         data {
-            data()
+            clientData()
 
             // DataGen can be run by - "./gradlew :neoforge:runData" in Terminal.
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
@@ -54,9 +50,9 @@ repositories {
 
 dependencies {
     implementation "net.neoforged:neoforge:${neoforge_version}"
-    implementation "com.mrcrayfish:framework-neoforge:${minecraft_version}-${framework_version}"
-    implementation "curse.maven:configured-457570:7276577"
-    implementation "curse.maven:catalogue-459701:6926815"
+    implementation "com.mrcrayfish:framework-neoforge:${framework_version}+${minecraft_version}"
+    implementation "curse.maven:configured-457570:7820636"
+    implementation "curse.maven:catalogue-459701:7815468"
 }
 
 sourceSets.main.resources {

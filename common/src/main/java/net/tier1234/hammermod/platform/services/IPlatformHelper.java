@@ -19,6 +19,6 @@ public interface IPlatformHelper {
     }
 
     CreativeModeTab.Builder getCreativeTabBuilder();
-
+    void setupCreativeTabDisplayItems(CreativeModeTab.Builder builder);
     void damageItemAutoSmelt(ItemStack tool, Player player);
 }

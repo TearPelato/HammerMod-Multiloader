@@ -82,7 +82,7 @@ public class FabricModEvents {
 
             // ============ VEINMINER ENCHANTMENT - GESTITO DIRETTAMENTE ============
             var veinMinerHolder = world.registryAccess()
-                    .registryOrThrow(Registries.ENCHANTMENT)
+                    .lookupOrThrow(Registries.ENCHANTMENT)
                     .getHolder(ModEnchantments.VEINMINER)
                     .orElse(null);
 
@@ -133,7 +133,7 @@ public class FabricModEvents {
 
             // ============ DIGGING ENCHANTMENT ============
             var diggingHolder = world.registryAccess()
-                    .registryOrThrow(Registries.ENCHANTMENT)
+                    .lookupOrThrow(Registries.ENCHANTMENT)
                     .getHolder(ModEnchantments.DIGGING)
                     .orElse(null);
 
@@ -147,7 +147,7 @@ public class FabricModEvents {
 
             // ============ EXCAVATOR ENCHANTMENT ============
             var excavatorHolder = world.registryAccess()
-                    .registryOrThrow(Registries.ENCHANTMENT)
+                    .lookupOrThrow(Registries.ENCHANTMENT)
                     .getHolder(ModEnchantments.EXCAVATOR)
                     .orElse(null);
 
@@ -161,7 +161,7 @@ public class FabricModEvents {
 
             // ============ AUTOSMELT ENCHANTMENT ============
             var autosmeltHolder = world.registryAccess()
-                    .registryOrThrow(Registries.ENCHANTMENT)
+                    .lookupOrThrow(Registries.ENCHANTMENT)
                     .getHolder(ModEnchantments.AUTOSMELT)
                     .orElse(null);
 

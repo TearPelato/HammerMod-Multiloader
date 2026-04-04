@@ -4,10 +4,7 @@ import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
-import net.tier1234.hammermod.datagen.ModBlockTagProvider;
-import net.tier1234.hammermod.datagen.ModDatapackProvider;
-import net.tier1234.hammermod.datagen.ModItemTagProvider;
-import net.tier1234.hammermod.datagen.ModRecipeProvider;
+import net.tier1234.hammermod.datagen.*;
 import net.tier1234.hammermod.registries.ModEnchantments;
 
 public class DataGenerators implements DataGeneratorEntrypoint {
@@ -17,10 +14,9 @@ public class DataGenerators implements DataGeneratorEntrypoint {
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
         pack.addProvider(ModDatapackProvider::new);
-        pack.addProvider(ModRecipeProvider::new);
-        pack.addProvider(ModBlockTagProvider::new);
-        pack.addProvider((output, registries) ->
-                new ModItemTagProvider(output, registries));   // ItemTagProvider ha bisogno anche dei block tags
+        pack.addProvider(CommonRecipeProvider.Runner::new);
+        pack.addProvider(CommonBlockTagGen::new);
+        pack.addProvider(CommonItemTagProvider::new);
 
     }
 

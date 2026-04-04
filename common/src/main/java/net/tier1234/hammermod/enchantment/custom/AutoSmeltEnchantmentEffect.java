@@ -45,8 +45,8 @@ public class AutoSmeltEnchantmentEffect implements EnchantmentEntityEffect {
         ItemStack tool = itemInUse.itemStack();
 
         var silkTouchHolder = level.registryAccess()
-                .registryOrThrow(Registries.ENCHANTMENT)
-                .getHolder(Enchantments.SILK_TOUCH)
+                .lookupOrThrow(Registries.ENCHANTMENT)
+                .wrapAsHolder(Enchantments.SILK_TOUCH)
                 .orElse(null);
 
         if (silkTouchHolder != null && EnchantmentHelper.getItemEnchantmentLevel(silkTouchHolder, tool) > 0) {
@@ -98,13 +98,13 @@ public class AutoSmeltEnchantmentEffect implements EnchantmentEntityEffect {
                                    @Nullable BlockEntity blockEntity, Player player) {
         SingleRecipeInput recipeInput = new SingleRecipeInput(state.getBlock().asItem().getDefaultInstance());
 
-        var recipeOpt = level.getRecipeManager()
+        var recipeOpt = level.recipeAccess()
                 .getRecipeFor(RecipeType.SMELTING, recipeInput, level);
 
         if (recipeOpt.isPresent()) {
             var recipe = recipeOpt.get().value();
 
-            ItemStack smeltResult = recipe.assemble(recipeInput, level.registryAccess());
+            ItemStack smeltResult = recipe.assemble(recipeInput);
 
             Item itemOfBlock = state.getBlock().asItem();
             List<ItemStack> normalDrops = Block.getDrops(state, level, BlockPos.containing(0,0,0), blockEntity, player, tool);
