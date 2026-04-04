@@ -16,7 +16,7 @@ import net.tier1234.hammermod.client.render.HammerOverlayRenderer;
 @EventBusSubscriber(modid = Constants.MOD_ID, value = Dist.CLIENT)
 public class HammerModClient {
     public HammerModClient(ModContainer container) {
-        container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+
     }
 
     @SubscribeEvent
