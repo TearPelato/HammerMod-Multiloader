@@ -7,12 +7,9 @@ import net.tier1234.hammermod.registries.ModEnchantmentEffects;
 
 public class HammerMod implements ModInitializer {
 
-    public HammerMod() {
-        FrameworkSetup.run();
-    }
-
     @Override
     public void onInitialize() {
+        FrameworkSetup.run();
         FabricModEvents.init();
         ModEnchantmentEffects.register();
     }

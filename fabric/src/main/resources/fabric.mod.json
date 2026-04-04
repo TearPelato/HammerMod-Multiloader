@@ -41,7 +41,6 @@
     },
     "custom": {
         "configured": {
-            "configs": [],
             "background": "minecraft:textures/block/dirt.png"
         },
         "framework": {
