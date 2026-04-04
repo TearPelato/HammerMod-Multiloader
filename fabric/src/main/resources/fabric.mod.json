@@ -18,6 +18,10 @@
         "main": [
             "net.tier1234.hammermod.HammerMod"
         ],
+        "client": [
+            "net.tier1234.hammermod.HammerModClient"
+    ],
+
         "fabric-datagen": [
             "net.tier1234.hammermod.DataGenerators"
         ]

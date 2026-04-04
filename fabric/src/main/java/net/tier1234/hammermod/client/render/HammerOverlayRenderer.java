@@ -1,5 +1,9 @@
 package net.tier1234.hammermod.client.render;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.minecraft.client.Minecraft;
@@ -15,54 +19,43 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.tier1234.hammermod.item.custom.HammerItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 public class HammerOverlayRenderer {
 
     public static void register() {
-        WorldRenderEvents.BEFORE_BLOCK_OUTLINE.register(HammerOverlayRenderer::onBeforeBlockOutline);
+        WorldRenderEvents.BLOCK_OUTLINE.register((worldRenderContext, blockOutlineContext) -> {
+            Minecraft mc = Minecraft.getInstance();
+            LocalPlayer player = mc.player;
+            if (player == null || mc.level == null) return true;
+
+            ItemStack held = player.getMainHandItem();
+            if (held.getItem().getClass() != HammerItem.class) return true;
+
+            HitResult hitResult = mc.hitResult;
+            if (!(hitResult instanceof BlockHitResult blockHit)) return true;
+
+            BlockPos target = blockHit.getBlockPos();
+            Direction face = blockHit.getDirection();
+
+            List<BlockPos> area = getSymmetricBlocks(target, face, 1);
+
+            renderArea(worldRenderContext, mc, player, area);
+
+            return false; // Cancel default outline
+        });
     }
 
-    private static boolean onBeforeBlockOutline(WorldRenderContext context, HitResult hitResult) {
-        if (!(hitResult instanceof BlockHitResult blockHit)) {
-            return true;
-        }
-
-        Minecraft mc = Minecraft.getInstance();
-        LocalPlayer player = mc.player;
-        if (player == null || mc.level == null) {
-            return true;
-        }
-
-        ItemStack held = player.getMainHandItem();
-        if (!(held.getItem() instanceof HammerItem)) {   // usa instanceof invece di getClass()
-            return true;
-        }
-
-        // Render dell'area 3x3 e blocca l'outline vanilla
-        renderArea(context, blockHit);
-        return false;
-    }
-
-    private static void renderArea(WorldRenderContext context, BlockHitResult hitResult) {
-        Minecraft mc = Minecraft.getInstance();
-        LocalPlayer player = mc.player;
-        if (player == null) return;
-
-        BlockPos target = hitResult.getBlockPos();
-        Direction face = hitResult.getDirection();
-
-        List<BlockPos> area = getSymmetricBlocks(target, face, 1); // radius = 1 → 3x3
-
+    private static void renderArea(WorldRenderContext context, Minecraft mc,
+                                   LocalPlayer player, List<BlockPos> area) {
         PoseStack poseStack = context.matrixStack();
         Vec3 camPos = context.camera().getPosition();
-        VertexConsumer vertexConsumer = context.consumers().getBuffer(RenderType.lines());
+        VertexConsumer vertexConsumer = context.consumers()
+                .getBuffer(RenderType.lines());
 
         for (BlockPos pos : area) {
             BlockState state = mc.level.getBlockState(pos);
@@ -92,15 +85,14 @@ public class HammerOverlayRenderer {
         List<BlockPos> blocks = new ArrayList<>();
         Direction.Axis axis = face.getAxis();
 
-        for (int a = -radius; a <= radius; a++) {
-            for (int b = -radius; b <= radius; b++) {
+        for (int a = -radius; a <= radius; a++)
+            for (int b = -radius; b <= radius; b++)
                 blocks.add(switch (axis) {
                     case Y -> target.offset(a, 0, b);
                     case X -> target.offset(0, a, b);
                     case Z -> target.offset(a, b, 0);
                 });
-            }
-        }
+
         return blocks;
     }
 }

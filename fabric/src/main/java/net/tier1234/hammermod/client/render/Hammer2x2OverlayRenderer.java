@@ -2,6 +2,8 @@ package net.tier1234.hammermod.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.minecraft.client.Minecraft;
@@ -22,48 +24,39 @@ import net.tier1234.hammermod.item.custom.HammerItem2x2;
 import java.util.ArrayList;
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 public class Hammer2x2OverlayRenderer {
 
     public static void register() {
-        WorldRenderEvents.BEFORE_BLOCK_OUTLINE.register(Hammer2x2OverlayRenderer::onBeforeBlockOutline);
+        WorldRenderEvents.BLOCK_OUTLINE.register((worldRenderContext, blockOutlineContext) -> {
+            Minecraft mc = Minecraft.getInstance();
+            LocalPlayer player = mc.player;
+            if (player == null || mc.level == null) return true;
+
+            ItemStack held = player.getMainHandItem();
+            if (held.getItem().getClass() != HammerItem2x2.class) return true;
+
+            HitResult hitResult = mc.hitResult;
+            if (!(hitResult instanceof BlockHitResult blockHit)) return true;
+
+            BlockPos target = blockHit.getBlockPos();
+            Direction face = blockHit.getDirection();
+            Vec3 hitLocation = blockHit.getLocation();
+
+            List<BlockPos> area = get2x2Blocks(target, face, hitLocation);
+
+            renderArea(worldRenderContext, mc, player, area);
+
+            return false; // Cancel default outline
+        });
     }
 
-    private static boolean onBeforeBlockOutline(WorldRenderContext context, HitResult hitResult) {
-        // Controllo se è un colpo su un blocco
-        if (!(hitResult instanceof BlockHitResult blockHit)) {
-            return true; // non è un blocco → lascia fare a vanilla
-        }
-
-        Minecraft mc = Minecraft.getInstance();
-        LocalPlayer player = mc.player;
-        if (player == null || mc.level == null) {
-            return true;
-        }
-
-        ItemStack held = player.getMainHandItem();
-        if (!(held.getItem() instanceof HammerItem2x2)) {
-            return true;
-        }
-
-        // È il nostro hammer → rendiamo l'area 2x2 e blocchiamo l'outline vanilla
-        render2x2Area(context, blockHit);
-        return false;
-    }
-
-    private static void render2x2Area(WorldRenderContext context, BlockHitResult hitResult) {
-        Minecraft mc = Minecraft.getInstance();
-        LocalPlayer player = mc.player;
-        if (player == null) return;
-
-        BlockPos target = hitResult.getBlockPos();
-        Direction face = hitResult.getDirection();
-        Vec3 hitLocation = hitResult.getLocation();
-
-        List<BlockPos> area = get2x2Blocks(target, face, hitLocation);
-
+    private static void renderArea(WorldRenderContext context, Minecraft mc,
+                                   LocalPlayer player, List<BlockPos> area) {
         PoseStack poseStack = context.matrixStack();
         Vec3 camPos = context.camera().getPosition();
-        VertexConsumer vertexConsumer = context.consumers().getBuffer(RenderType.lines());
+        VertexConsumer vertexConsumer = context.consumers()
+                .getBuffer(RenderType.lines());
 
         for (BlockPos pos : area) {
             BlockState state = mc.level.getBlockState(pos);
@@ -80,12 +73,9 @@ public class Hammer2x2OverlayRenderer {
             poseStack.translate(dx, dy, dz);
 
             LevelRenderer.renderVoxelShape(
-                    poseStack,
-                    vertexConsumer,
-                    shape,
+                    poseStack, vertexConsumer, shape,
                     0.0, 0.0, 0.0,
-                    0.0f, 0.0f, 0.0f, 0.4f,   // R G B Alpha  → grigio trasparente
-                    false
+                    0.0f, 0.0f, 0.0f, 0.4f, false
             );
 
             poseStack.popPose();
@@ -100,7 +90,6 @@ public class Hammer2x2OverlayRenderer {
         double lz = hitLocation.z - Math.floor(hitLocation.z);
 
         int offA, offB;
-
         switch (face.getAxis()) {
             case Y -> {
                 offA = lx < 0.5 ? -1 : 0;
