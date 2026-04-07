@@ -49,8 +49,7 @@
   "tooltip.hammer_mod.hammer5x5": "Press §eShift§r for more Information",
 
 
-  "creativetab.hammer_mod.hammer_mod_items": "HammerAdditions:Items",
-  "creativetab.hammer_mod.hammer_mod_tools": "HammerAdditions:Tools",
+  "itemGroup.hammer_mod.main": "HammerMod Tab",
 
   "enchantment.hammer_mod.digging": "Digging",
   "enchantment.hammer_mod.autosmelt": "AutoSmelt",

@@ -11,14 +11,8 @@ import net.tier1234.hammermod.platform.Services;
 @RegistryContainer
 public class ModCreativeTabs {
 
-    public static final RegistryEntry<CreativeModeTab> HAMMER_MOD_TAB_ITEMS = RegistryEntry.creativeModeTab(Constants.id("creative_tab_items"), builder -> {
-        builder.title(Component.translatable("creativetab.hammer_mod.hammer_mod_items"));
-        builder.icon(()-> new ItemStack(ModItems.HAMEMR_SMITHING_TEMPLATE.get()));
-        Services.PLATFORM.setupCreativeTabDisplayItems(builder);
-    });
-
-    public static final RegistryEntry<CreativeModeTab> HAMMER_MOD_TAB_TOOLS = RegistryEntry.creativeModeTab(Constants.id("creative_tab_tools"), builder -> {
-        builder.title(Component.translatable("creativetab.hammer_mod.hammer_mod_tools"));
+    public static final RegistryEntry<CreativeModeTab> HAMMER_MOD_TAB_MAIN = RegistryEntry.creativeModeTab(Constants.id("itemGroup_main"), builder -> {
+        builder.title(Component.translatable("itemGroup." + Constants.MOD_ID + ".main"));
         builder.icon(()-> new ItemStack(ModItems.STONE_HAMMER.get()));
         Services.PLATFORM.setupCreativeTabDisplayItems(builder);
     });
