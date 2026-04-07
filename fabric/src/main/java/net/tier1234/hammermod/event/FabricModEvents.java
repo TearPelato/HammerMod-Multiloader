@@ -3,10 +3,13 @@ package net.tier1234.hammermod.event;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -81,10 +84,10 @@ public class FabricModEvents {
             }
 
             // ============ VEINMINER ENCHANTMENT - GESTITO DIRETTAMENTE ============
-            var veinMinerHolder = world.registryAccess()
-                    .lookupOrThrow(Registries.ENCHANTMENT)
-                    .getHolder(ModEnchantments.VEINMINER)
-                    .orElse(null);
+            Registry<Enchantment> enchantmentRegistry = world.registryAccess()
+                    .lookupOrThrow(Registries.ENCHANTMENT);
+            Holder<Enchantment> veinMinerHolder = enchantmentRegistry.getOrThrow(ModEnchantments.VEINMINER);
+
 
             if (veinMinerHolder != null) {
                 int level = EnchantmentHelper.getItemEnchantmentLevel(veinMinerHolder, mainHandItem);
@@ -132,10 +135,10 @@ public class FabricModEvents {
             }
 
             // ============ DIGGING ENCHANTMENT ============
-            var diggingHolder = world.registryAccess()
-                    .lookupOrThrow(Registries.ENCHANTMENT)
-                    .getHolder(ModEnchantments.DIGGING)
-                    .orElse(null);
+            Registry<Enchantment> enchantmentRegistry2 = world.registryAccess()
+                    .lookupOrThrow(Registries.ENCHANTMENT);
+            Holder<Enchantment> diggingHolder = enchantmentRegistry2.getOrThrow(ModEnchantments.DIGGING);
+
 
             if (diggingHolder != null) {
                 int level = EnchantmentHelper.getItemEnchantmentLevel(diggingHolder, mainHandItem);
@@ -146,10 +149,10 @@ public class FabricModEvents {
             }
 
             // ============ EXCAVATOR ENCHANTMENT ============
-            var excavatorHolder = world.registryAccess()
-                    .lookupOrThrow(Registries.ENCHANTMENT)
-                    .getHolder(ModEnchantments.EXCAVATOR)
-                    .orElse(null);
+            Registry<Enchantment> enchantmentRegistry3 = world.registryAccess()
+                    .lookupOrThrow(Registries.ENCHANTMENT);
+            Holder<Enchantment> excavatorHolder = enchantmentRegistry3.getOrThrow(ModEnchantments.EXCAVATOR);
+
 
             if (excavatorHolder != null) {
                 int level = EnchantmentHelper.getItemEnchantmentLevel(excavatorHolder, mainHandItem);
@@ -159,11 +162,10 @@ public class FabricModEvents {
                 }
             }
 
-            // ============ AUTOSMELT ENCHANTMENT ============
-            var autosmeltHolder = world.registryAccess()
-                    .lookupOrThrow(Registries.ENCHANTMENT)
-                    .getHolder(ModEnchantments.AUTOSMELT)
-                    .orElse(null);
+            Registry<Enchantment> enchantmentRegistry4 = world.registryAccess()
+                    .lookupOrThrow(Registries.ENCHANTMENT);
+            Holder<Enchantment> autosmeltHolder = enchantmentRegistry.getOrThrow(ModEnchantments.AUTOSMELT);
+
 
             if (autosmeltHolder != null) {
                 int level = EnchantmentHelper.getItemEnchantmentLevel(autosmeltHolder, mainHandItem);

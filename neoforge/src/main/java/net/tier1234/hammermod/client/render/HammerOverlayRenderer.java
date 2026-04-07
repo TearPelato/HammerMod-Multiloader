@@ -4,8 +4,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.LevelRenderer;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.ShapeRenderer;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
@@ -17,7 +17,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.client.event.RenderHighlightEvent;
+import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.tier1234.hammermod.item.custom.HammerItem;
 
@@ -33,17 +33,16 @@ public class HammerOverlayRenderer {
     }
 
     @SubscribeEvent
-    public void onRenderBlockHighlight(RenderHighlightEvent.Block event) {
+    public void onRenderLevel(RenderLevelStageEvent.AfterOpaqueBlocks event) {
         Minecraft mc = Minecraft.getInstance();
         LocalPlayer player = mc.player;
         if (player == null || mc.level == null) return;
 
         ItemStack held = player.getMainHandItem();
-        if (held.getItem().getClass() != HammerItem.class) return;
+        if (!(held.getItem() instanceof HammerItem)) return;
 
-        event.setCanceled(true);
+        if (!(mc.hitResult instanceof BlockHitResult blockHit)) return;
 
-        BlockHitResult blockHit = event.getTarget();
         BlockPos target = blockHit.getBlockPos();
         Direction face = blockHit.getDirection();
 
@@ -52,12 +51,14 @@ public class HammerOverlayRenderer {
         renderArea(event, mc, player, area);
     }
 
-    private static void renderArea(RenderHighlightEvent.Block event, Minecraft mc,
+    private static void renderArea(RenderLevelStageEvent event, Minecraft mc,
                                    LocalPlayer player, List<BlockPos> area) {
         PoseStack poseStack = event.getPoseStack();
-        Vec3 camPos = event.getCamera().getPosition();
-        VertexConsumer vertexConsumer = event.getMultiBufferSource()
-                .getBuffer(RenderType.lines());
+        Vec3 camPos = event.getLevelRenderState().cameraRenderState.pos;
+
+        VertexConsumer vertexConsumer = mc.renderBuffers()
+                .bufferSource()
+                .getBuffer(RenderTypes.lines());
 
         for (BlockPos pos : area) {
             BlockState state = mc.level.getBlockState(pos);
@@ -73,10 +74,10 @@ public class HammerOverlayRenderer {
             poseStack.pushPose();
             poseStack.translate(dx, dy, dz);
 
-            LevelRenderer.renderVoxelShape(
+            ShapeRenderer.renderShape(
                     poseStack, vertexConsumer, shape,
-                    0.0, 0.0, 0.0,
-                    0.0f, 0.0f, 0.0f, 0.4f, false
+                    0, 1, 0.4,
+                    0, 0.0f
             );
 
             poseStack.popPose();
@@ -87,14 +88,15 @@ public class HammerOverlayRenderer {
         List<BlockPos> blocks = new ArrayList<>();
         Direction.Axis axis = face.getAxis();
 
-        for (int a = -radius; a <= radius; a++)
-            for (int b = -radius; b <= radius; b++)
+        for (int a = -radius; a <= radius; a++) {
+            for (int b = -radius; b <= radius; b++) {
                 blocks.add(switch (axis) {
                     case Y -> target.offset(a, 0, b);
                     case X -> target.offset(0, a, b);
                     case Z -> target.offset(a, b, 0);
                 });
-
+            }
+        }
         return blocks;
     }
 }

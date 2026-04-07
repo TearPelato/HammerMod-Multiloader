@@ -2,6 +2,8 @@ package net.tier1234.hammermod.enchantment.custom;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
@@ -11,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.item.enchantment.EnchantedItemInUse;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
@@ -44,12 +47,11 @@ public class AutoSmeltEnchantmentEffect implements EnchantmentEntityEffect {
 
         ItemStack tool = itemInUse.itemStack();
 
-        var silkTouchHolder = level.registryAccess()
-                .lookupOrThrow(Registries.ENCHANTMENT)
-                .wrapAsHolder(Enchantments.SILK_TOUCH)
-                .orElse(null);
+        Registry<Enchantment> enchantmentRegistry = level.registryAccess()
+                .lookupOrThrow(Registries.ENCHANTMENT);
+        Holder<Enchantment> silkTouchHolder = enchantmentRegistry.getOrThrow(Enchantments.SILK_TOUCH);
 
-        if (silkTouchHolder != null && EnchantmentHelper.getItemEnchantmentLevel(silkTouchHolder, tool) > 0) {
+        if (EnchantmentHelper.getItemEnchantmentLevel(silkTouchHolder, tool) > 0) {
             return;
         }
 
@@ -65,7 +67,7 @@ public class AutoSmeltEnchantmentEffect implements EnchantmentEntityEffect {
                 state,
                 level,
                 pos,
-                level.getBlockEntity(pos),
+                blockEntity,
                 player,
                 tool
         );
@@ -75,8 +77,6 @@ public class AutoSmeltEnchantmentEffect implements EnchantmentEntityEffect {
         }
 
         List<ItemStack> finalDrops = new ArrayList<>();
-        List<ItemStack> drops = Block.getDrops(state, level, pos, level.getBlockEntity(pos), player, tool);
-        if (drops.isEmpty()) return;
         for (ItemStack drop : possibleDrops) {
             ItemStack smelted = trySmeltBlock(level, state, tool, blockEntity, player);
             finalDrops.add(smelted.isEmpty() ? drop.copy() : smelted);
