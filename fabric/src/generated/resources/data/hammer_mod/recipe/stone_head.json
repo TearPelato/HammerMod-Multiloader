@@ -2,19 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "minecraft:cobblestone"
-    },
-    "C": {
-      "item": "minecraft:iron_ingot"
-    }
+    "#": "minecraft:cobblestone",
+    "C": "minecraft:iron_ingot"
   },
   "pattern": [
     "###",
     "#C#"
   ],
   "result": {
-    "count": 1,
     "id": "hammer_mod:stone_head"
   }
 }

@@ -11,7 +11,7 @@ import net.tier1234.hammermod.platform.Services;
 @RegistryContainer
 public class ModCreativeTabs {
 
-    public static final RegistryEntry<CreativeModeTab> HAMMER_MOD_TAB_MAIN = RegistryEntry.creativeModeTab(Constants.id("itemGroup_main"), builder -> {
+    public static final RegistryEntry<CreativeModeTab> HAMMER_MOD_TAB_MAIN = RegistryEntry.creativeModeTab(Constants.id("item_group_main"), builder -> {
         builder.title(Component.translatable("itemGroup." + Constants.MOD_ID + ".main"));
         builder.icon(()-> new ItemStack(ModItems.STONE_HAMMER.get()));
         Services.PLATFORM.setupCreativeTabDisplayItems(builder);

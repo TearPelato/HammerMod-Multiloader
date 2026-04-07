@@ -18,7 +18,7 @@ public class CommonRecipeProvider extends RecipeProvider {
     }
 
     @Override
-    protected void buildRecipes() {
+    public void buildRecipes() {
 
 
 //Hammers
@@ -84,7 +84,7 @@ public class CommonRecipeProvider extends RecipeProvider {
 
 
         //Netherite Hammers
-        this.netheriteSmithing(ModItems.DIAMOND_HAMMER.get(), RecipeCategory.TOOLS, ModItems.NETHERITE_HAMMER.get());
+        //this.netheriteSmithing(ModItems.DIAMOND_HAMMER.get(), RecipeCategory.TOOLS, ModItems.NETHERITE_HAMMER.get());
 
         this.netheriteSmithing(ModItems.DIAMOND_HAMMER.get(), RecipeCategory.TOOLS, ModItems.NETHERITE_HAMMER.get());
         this.netheriteSmithing(ModItems.TINY_DIAMOND_HAMMER.get(), RecipeCategory.TOOLS, ModItems.TINY_NETHERITE_HAMMER.get());

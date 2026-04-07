@@ -4,9 +4,12 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderContext;
+import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
+import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.LevelRenderer;
+import net.minecraft.client.renderer.ShapeRenderer;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -26,34 +29,36 @@ import java.util.List;
 public class HammerOverlayRenderer {
 
     public static void register() {
-        WorldRenderEvents.BLOCK_OUTLINE.register((worldRenderContext, blockOutlineContext) -> {
+        LevelRenderEvents.BEFORE_BLOCK_OUTLINE.register((context, blockOutlineContext) -> {
             Minecraft mc = Minecraft.getInstance();
             LocalPlayer player = mc.player;
-            if (player == null || mc.level == null) return true;
+            if (player == null || mc.level == null) return false;
 
             ItemStack held = player.getMainHandItem();
-            if (held.getItem().getClass() != HammerItem.class) return true;
+            if (held.getItem().getClass() != HammerItem.class) return false;
 
             HitResult hitResult = mc.hitResult;
-            if (!(hitResult instanceof BlockHitResult blockHit)) return true;
+            if (!(hitResult instanceof BlockHitResult blockHit)) return false;
 
             BlockPos target = blockHit.getBlockPos();
             Direction face = blockHit.getDirection();
 
             List<BlockPos> area = getSymmetricBlocks(target, face, 1);
 
-            renderArea(worldRenderContext, mc, player, area);
+            renderArea(context, mc, player, area);
 
-            return false; // Cancel default outline
+            return true;
         });
     }
 
-    private static void renderArea(WorldRenderContext context, Minecraft mc,
+    private static void renderArea(LevelRenderContext context, Minecraft mc,
                                    LocalPlayer player, List<BlockPos> area) {
-        PoseStack poseStack = context.matrixStack();
-        Vec3 camPos = context.camera().getPosition();
-        VertexConsumer vertexConsumer = context.consumers()
-                .getBuffer(RenderTypes.lines());
+        PoseStack poseStack = context.poseStack();
+        Camera camera = mc.gameRenderer.getMainCamera();
+        Vec3 camPos = camera.position();
+
+        VertexConsumer vertexConsumer = context.bufferSource()
+                .getBuffer(RenderTypes.LINES);
 
         for (BlockPos pos : area) {
             BlockState state = mc.level.getBlockState(pos);
@@ -69,10 +74,12 @@ public class HammerOverlayRenderer {
             poseStack.pushPose();
             poseStack.translate(dx, dy, dz);
 
-            LevelRenderer.renderVoxelShape(
-                    poseStack, vertexConsumer, shape,
+            ShapeRenderer.renderShape(
+                    poseStack,
+                    vertexConsumer,
+                    shape,
                     0.0, 0.0, 0.0,
-                    0.0f, 0.0f, 0.0f, 0.4f, false
+                    0, 0.0f
             );
 
             poseStack.popPose();

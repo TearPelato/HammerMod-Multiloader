@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "minecraft:diamond"
-    },
-    "C": {
-      "item": "hammer_mod:diamond_head"
-    },
-    "X": {
-      "item": "hammer_mod:hammer_smithing_template"
-    }
+    "#": "minecraft:diamond",
+    "C": "hammer_mod:diamond_head",
+    "X": "hammer_mod:hammer_smithing_template"
   },
   "pattern": [
     "#X#",

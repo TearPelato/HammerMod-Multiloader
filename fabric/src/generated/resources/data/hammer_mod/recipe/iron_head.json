@@ -2,19 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "minecraft:iron_ingot"
-    },
-    "C": {
-      "item": "minecraft:iron_nugget"
-    }
+    "#": "minecraft:iron_ingot",
+    "C": "minecraft:iron_nugget"
   },
   "pattern": [
     "###",
     "#C#"
   ],
   "result": {
-    "count": 1,
     "id": "hammer_mod:iron_head"
   }
 }
