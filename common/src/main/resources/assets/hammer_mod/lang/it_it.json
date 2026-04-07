@@ -48,6 +48,13 @@
   "tooltip.hammer_mod.hammer5x5.shift_down": "Questo Utensile può rompere un'area 5x5",
   "tooltip.hammer_mod.hammer5x5": "Premi §eShift§r per maggiorni Informazioni",
 
-  "creativetab.hammer_mod.hammer_mod_items": "HammerAdditions:Oggetti",
-  "creativetab.hammer_mod.hammer_mod_tools": "HammerAdditions:Utensili"
+  "itemGroup.hammer_mod.main": "HammerMod Tab",
+
+  "enchantment.hammer_mod.digging": "Ditruggitore",
+  "enchantment.hammer_mod.autosmelt": "Autocottura",
+  "enchantment.hammer_mod.excavator": "Scavatore",
+  "enchantment.hammer_mod.veinminer": "RompiVene",
+
+
+  "hammer_mod.configuration.veinminer_group": "Opzioni Rompivene"
 }
