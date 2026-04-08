@@ -1,16 +1,9 @@
 {
   "type": "minecraft:smithing_transform",
-  "addition": {
-    "item": "minecraft:stick"
-  },
-  "base": {
-    "item": "hammer_mod:giant_stone_head"
-  },
+  "addition": "minecraft:stick",
+  "base": "hammer_mod:giant_stone_head",
   "result": {
-    "count": 1,
     "id": "hammer_mod:giant_stone_hammer"
   },
-  "template": {
-    "item": "hammer_mod:hammer_smithing_template"
-  }
+  "template": "hammer_mod:hammer_smithing_template"
 }

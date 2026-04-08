@@ -2,19 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "minecraft:gold_block"
-    },
-    "C": {
-      "item": "minecraft:gold_ingot"
-    }
+    "#": "minecraft:gold_block",
+    "C": "minecraft:gold_ingot"
   },
   "pattern": [
     "###",
     "#C#"
   ],
   "result": {
-    "count": 1,
     "id": "hammer_mod:giant_gold_head"
   }
 }

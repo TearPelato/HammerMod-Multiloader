@@ -2,19 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "minecraft:amethyst_shard"
-    },
-    "C": {
-      "item": "minecraft:iron_ingot"
-    }
+    "#": "minecraft:amethyst_shard",
+    "C": "minecraft:iron_ingot"
   },
   "pattern": [
     "###",
     "#C#"
   ],
   "result": {
-    "count": 1,
     "id": "hammer_mod:amethyst_head"
   }
 }
