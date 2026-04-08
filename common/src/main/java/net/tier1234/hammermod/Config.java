@@ -16,7 +16,7 @@ public class Config {
                 Defines the maximun range of veinminer enchant. Here to define the max area of similiar blocks,  
                 the enchant can break
                 """)
-        public final IntProperty veinminerRange = IntProperty.create(10, 1, 250);
+        public final IntProperty veinminerRange = IntProperty.create(10, 1, 225);
 
     }
 }
