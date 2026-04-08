@@ -78,7 +78,7 @@ public class Hammer5x5OverlayRenderer {
                     vertexConsumer,
                     shape,
                     0.0, 0.0, 0.0,
-                    0, 0.0f
+                    0xFF000000, 5.0f
             );
 
             poseStack.popPose();

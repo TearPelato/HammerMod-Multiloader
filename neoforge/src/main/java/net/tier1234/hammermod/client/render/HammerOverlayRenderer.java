@@ -76,8 +76,8 @@ public class HammerOverlayRenderer {
 
             ShapeRenderer.renderShape(
                     poseStack, vertexConsumer, shape,
-                    0, 1, 0.4,
-                    0, 0.0f
+                    0, 0, 0.0,
+                    0xFF000000, 3.0f
             );
 
             poseStack.popPose();
