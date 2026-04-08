@@ -36,7 +36,7 @@ public class Hammer5x5OverlayRenderer {
             if (player == null || mc.level == null) return false;
 
             ItemStack held = player.getMainHandItem();
-            if (held.getItem().getClass() != HammerItem5x5.class) return false;
+            if (!(held.getItem() instanceof HammerItem5x5)) return false;
 
             HitResult hitResult = mc.hitResult;
             if (!(hitResult instanceof BlockHitResult blockHit)) return false;
@@ -48,7 +48,7 @@ public class Hammer5x5OverlayRenderer {
 
             renderArea(context, mc, player, area);
 
-            return true;
+            return false;
         });
     }
 
@@ -80,7 +80,8 @@ public class Hammer5x5OverlayRenderer {
                     vertexConsumer,
                     shape,
                     0.0, 0.0, 0.0,
-                    0, 0.0f
+                    0xFF000000,
+                    5.0f
             );
 
             poseStack.popPose();

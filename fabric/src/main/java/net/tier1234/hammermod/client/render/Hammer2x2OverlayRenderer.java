@@ -35,7 +35,7 @@ public class Hammer2x2OverlayRenderer {
             if (player == null || mc.level == null) return false;
 
             ItemStack held = player.getMainHandItem();
-            if (held.getItem().getClass() != HammerItem2x2.class) return false;
+            if (!(held.getItem() instanceof HammerItem2x2)) return false;
 
             HitResult hitResult = mc.hitResult;
             if (!(hitResult instanceof BlockHitResult blockHit)) return false;
@@ -48,7 +48,7 @@ public class Hammer2x2OverlayRenderer {
 
             renderArea(context, mc, player, area);
 
-            return true; // true = cancella l'outline vanilla
+            return false;
         });
     }
 
@@ -80,11 +80,14 @@ public class Hammer2x2OverlayRenderer {
                     vertexConsumer,
                     shape,
                     0.0, 0.0, 0.0,
-                    0, 0.0f
+                    0xFF000000,
+                    2.0f
             );
 
             poseStack.popPose();
         }
+
+        context.bufferSource().endBatch(RenderTypes.LINES);
     }
 
     private static List<BlockPos> get2x2Blocks(BlockPos target, Direction face, Vec3 hitLocation) {

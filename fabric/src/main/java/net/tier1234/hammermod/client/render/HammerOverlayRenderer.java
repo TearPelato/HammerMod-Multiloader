@@ -35,7 +35,7 @@ public class HammerOverlayRenderer {
             if (player == null || mc.level == null) return false;
 
             ItemStack held = player.getMainHandItem();
-            if (held.getItem().getClass() != HammerItem.class) return false;
+            if (!(held.getItem() instanceof HammerItem)) return false;
 
             HitResult hitResult = mc.hitResult;
             if (!(hitResult instanceof BlockHitResult blockHit)) return false;
@@ -57,8 +57,9 @@ public class HammerOverlayRenderer {
         Camera camera = mc.gameRenderer.getMainCamera();
         Vec3 camPos = camera.position();
 
-        VertexConsumer vertexConsumer = context.bufferSource()
-                .getBuffer(RenderTypes.LINES);
+        VertexConsumer vertexConsumer = mc.renderBuffers()
+                .bufferSource()
+                .getBuffer(RenderTypes.lines());
 
         for (BlockPos pos : area) {
             BlockState state = mc.level.getBlockState(pos);
@@ -75,11 +76,9 @@ public class HammerOverlayRenderer {
             poseStack.translate(dx, dy, dz);
 
             ShapeRenderer.renderShape(
-                    poseStack,
-                    vertexConsumer,
-                    shape,
-                    0.0, 0.0, 0.0,
-                    0, 0.0f
+                    poseStack, vertexConsumer, shape,
+                    0, 0, 0.0,
+                    0xFF000000, 3.0f
             );
 
             poseStack.popPose();
