@@ -20,69 +20,89 @@ public class ModItems {
 //Base Hammers Registries
 
     public static final RegistryEntry<HammerItem> STONE_HAMMER = RegistryEntry.item(Constants.id("stone_hammer"),
-        HammerItem::new, Item.Properties::new);
+        HammerItem::new, () -> new Item.Properties().pickaxe(ToolMaterial.STONE, 7F, -3.5f));
 
     public static final RegistryEntry<HammerItem> COPPER_HAMMER = RegistryEntry.item(Constants.id("copper_hammer"),
-            HammerItem::new, Item.Properties::new);
+            HammerItem::new, () -> new Item.Properties().pickaxe(ToolMaterial.COPPER, 7F, -3.5f));
+
 
     public static final RegistryEntry<HammerItem> IRON_HAMMER = RegistryEntry.item(Constants.id("iron_hammer"),
-            HammerItem::new, Item.Properties::new);
+            HammerItem::new, () -> new Item.Properties().pickaxe(ToolMaterial.IRON, 7F, -3.5f));
+
 
     public static final RegistryEntry<HammerItem> GOLD_HAMMER = RegistryEntry.item(Constants.id("gold_hammer"),
-            HammerItem::new, Item.Properties::new);
+            HammerItem::new, () -> new Item.Properties().pickaxe(ToolMaterial.GOLD, 7F, -3.5f));
+
 
     public static final RegistryEntry<HammerItem> DIAMOND_HAMMER = RegistryEntry.item(Constants.id("diamond_hammer"),
-            HammerItem::new, Item.Properties::new);
+            HammerItem::new, () -> new Item.Properties().pickaxe(ToolMaterial.DIAMOND, 7F, -3.5f));
+
 
     public static final RegistryEntry<HammerItem> NETHERITE_HAMMER = RegistryEntry.item(Constants.id("netherite_hammer"),
-            HammerItem::new, Item.Properties::new);
+            HammerItem::new, () -> new Item.Properties().pickaxe(ToolMaterial.NETHERITE, 7F, -3.5f));
+
 
     public static final RegistryEntry<HammerItem> AMETHYST_HAMMER = RegistryEntry.item(Constants.id("amethyst_hammer"),
-            HammerItem::new, Item.Properties::new);
+            HammerItem::new, () -> new Item.Properties().pickaxe(ModToolTiers.AMETHYST, 7F, -3.5f));
+
 
 //Tiny Hammers registries
 public static final RegistryEntry<HammerItem2x2> TINY_STONE_HAMMER = RegistryEntry.item(Constants.id("tiny_stone_hammer"),
-        HammerItem2x2::new, Item.Properties::new);
+        HammerItem2x2::new,() -> new Item.Properties().pickaxe(ToolMaterial.STONE, 7F, -3.5f));
+
 
     public static final RegistryEntry<HammerItem2x2> TINY_COPPER_HAMMER = RegistryEntry.item(Constants.id("tiny_copper_hammer"),
-            HammerItem2x2::new, Item.Properties::new);
+            HammerItem2x2::new,() -> new Item.Properties().pickaxe(ToolMaterial.COPPER, 7F, -3.5f));
+
 
     public static final RegistryEntry<HammerItem2x2> TINY_IRON_HAMMER = RegistryEntry.item(Constants.id("tiny_iron_hammer"),
-            HammerItem2x2::new, Item.Properties::new);
+            HammerItem2x2::new,() -> new Item.Properties().pickaxe(ToolMaterial.IRON, 7F, -3.5f));
+
 
     public static final RegistryEntry<HammerItem2x2> TINY_GOLD_HAMMER = RegistryEntry.item(Constants.id("tiny_gold_hammer"),
-            HammerItem2x2::new, Item.Properties::new);
+            HammerItem2x2::new,() -> new Item.Properties().pickaxe(ToolMaterial.GOLD, 7F, -3.5f));
+
 
     public static final RegistryEntry<HammerItem2x2> TINY_DIAMOND_HAMMER = RegistryEntry.item(Constants.id("tiny_diamond_hammer"),
-            HammerItem2x2::new, Item.Properties::new);
+            HammerItem2x2::new,() -> new Item.Properties().pickaxe(ToolMaterial.DIAMOND, 7F, -3.5f));
+
 
     public static final RegistryEntry<HammerItem2x2> TINY_NETHERITE_HAMMER = RegistryEntry.item(Constants.id("tiny_netherite_hammer"),
-            HammerItem2x2::new, Item.Properties::new);
+            HammerItem2x2::new,() -> new Item.Properties().pickaxe(ToolMaterial.NETHERITE, 7F, -3.5f));
+
 
     public static final RegistryEntry<HammerItem2x2> TINY_AMETHYST_HAMMER = RegistryEntry.item(Constants.id("tiny_amethyst_hammer"),
-            HammerItem2x2::new, Item.Properties::new);
+            HammerItem2x2::new,() -> new Item.Properties().pickaxe(ModToolTiers.AMETHYST, 7F, -3.5f));
+
 
 //Giant Hammers Registries
     public static final RegistryEntry<HammerItem5x5> GIANT_STONE_HAMMER = RegistryEntry.item(Constants.id("giant_stone_hammer"),
-        HammerItem5x5::new, Item.Properties::new);
+        HammerItem5x5::new,() -> new Item.Properties().pickaxe(ToolMaterial.STONE, 7F, -3.5f));
+
 
     public static final RegistryEntry<HammerItem5x5> GIANT_COPPER_HAMMER = RegistryEntry.item(Constants.id("giant_copper_hammer"),
-            HammerItem5x5::new, Item.Properties::new);
+            HammerItem5x5::new,() -> new Item.Properties().pickaxe(ToolMaterial.COPPER, 7F, -3.5f));
+
 
     public static final RegistryEntry<HammerItem5x5> GIANT_IRON_HAMMER = RegistryEntry.item(Constants.id("giant_iron_hammer"),
-            HammerItem5x5::new, Item.Properties::new);
+            HammerItem5x5::new,() -> new Item.Properties().pickaxe(ToolMaterial.IRON, 7F, -3.5f));
+
 
     public static final RegistryEntry<HammerItem5x5> GIANT_GOLD_HAMMER = RegistryEntry.item(Constants.id("giant_gold_hammer"),
-            HammerItem5x5::new, Item.Properties::new);
+            HammerItem5x5::new,() -> new Item.Properties().pickaxe(ToolMaterial.GOLD, 7F, -3.5f));
+
 
     public static final RegistryEntry<HammerItem5x5> GIANT_DIAMOND_HAMMER = RegistryEntry.item(Constants.id("giant_diamond_hammer"),
-            HammerItem5x5::new, Item.Properties::new);
+            HammerItem5x5::new,() -> new Item.Properties().pickaxe(ToolMaterial.DIAMOND, 7F, -3.5f));
+
 
     public static final RegistryEntry<HammerItem5x5> GIANT_NETHERITE_HAMMER = RegistryEntry.item(Constants.id("giant_netherite_hammer"),
-            HammerItem5x5::new, Item.Properties::new);
+            HammerItem5x5::new,() -> new Item.Properties().pickaxe(ToolMaterial.NETHERITE, 7F, -3.5f));
+
 
     public static final RegistryEntry<HammerItem5x5> GIANT_AMETHYST_HAMMER = RegistryEntry.item(Constants.id("giant_amethyst_hammer"),
-            HammerItem5x5::new, Item.Properties::new);
+            HammerItem5x5::new,() -> new Item.Properties().pickaxe(ModToolTiers.AMETHYST, 7F, -3.5f));
+
 
 
 
