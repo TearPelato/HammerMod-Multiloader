@@ -1,12 +1,11 @@
 package net.tier1234.hammermod.item.custom;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class HammerItem2x2 extends HammerItem {
+public class HammerItem2x2 extends Item {
     public HammerItem2x2(Properties properties) {
         super(properties);
     }
@@ -73,4 +72,3 @@ public class HammerItem2x2 extends HammerItem {
         super.appendHoverText(pStack, pContext, tooltipDisplay, components, tooltipFlag);
     }
 }
-
