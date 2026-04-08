@@ -8,9 +8,9 @@ import net.tier1234.hammermod.client.render.HammerOverlayRenderer;
 public class HammerModClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        Hammer2x2OverlayRenderer.register();
+        /*Hammer2x2OverlayRenderer.register();
         HammerOverlayRenderer.register();
-        Hammer5x5OverlayRenderer.register();
+        Hammer5x5OverlayRenderer.register();*/
 
     }
 }

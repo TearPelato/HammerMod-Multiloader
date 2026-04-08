@@ -47,7 +47,7 @@ public class HammerOverlayRenderer {
 
             renderArea(context, mc, player, area);
 
-            return true;
+            return false;
         });
     }
 
@@ -57,9 +57,8 @@ public class HammerOverlayRenderer {
         Camera camera = mc.gameRenderer.getMainCamera();
         Vec3 camPos = camera.position();
 
-        VertexConsumer vertexConsumer = mc.renderBuffers()
-                .bufferSource()
-                .getBuffer(RenderTypes.lines());
+        VertexConsumer vertexConsumer = context.bufferSource()
+                .getBuffer(RenderTypes.LINES);
 
         for (BlockPos pos : area) {
             BlockState state = mc.level.getBlockState(pos);
