@@ -32,13 +32,13 @@ public class Hammer2x2OverlayRenderer {
         LevelRenderEvents.BEFORE_BLOCK_OUTLINE.register((context, blockOutlineContext) -> {
             Minecraft mc = Minecraft.getInstance();
             LocalPlayer player = mc.player;
-            if (player == null || mc.level == null) return false;
+            if (player == null || mc.level == null) return true;
 
             ItemStack held = player.getMainHandItem();
-            if (!(held.getItem() instanceof HammerItem2x2)) return false;
+            if (!(held.getItem() instanceof HammerItem2x2)) return true;
 
             HitResult hitResult = mc.hitResult;
-            if (!(hitResult instanceof BlockHitResult blockHit)) return false;
+            if (!(hitResult instanceof BlockHitResult blockHit)) return true;
 
             BlockPos target = blockHit.getBlockPos();
             Direction face = blockHit.getDirection();
