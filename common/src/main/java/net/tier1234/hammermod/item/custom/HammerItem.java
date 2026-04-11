@@ -1,7 +1,6 @@
 package net.tier1234.hammermod.item.custom;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -20,7 +19,7 @@ import java.util.function.Consumer;
 
 public class HammerItem extends Item {
     public HammerItem(Properties properties) {
-        super(properties);
+        super(properties.enchantable(25));
     }
     public static List<BlockPos> getBlocksToBeDestroyed(int range, BlockPos initalBlockPos, ServerPlayer player) {
         List<BlockPos> positions = new ArrayList<>();

@@ -19,7 +19,7 @@ import java.util.function.Consumer;
 
 public class HammerItem2x2 extends Item {
     public HammerItem2x2(Properties properties) {
-        super(properties);
+        super(properties.enchantable(25));
     }
     // Inside HammerItem class
     public static List<BlockPos> getBlocksToBeDestroyed(BlockPos initialBlockPos, ServerPlayer player) {
