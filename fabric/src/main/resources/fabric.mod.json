@@ -12,7 +12,7 @@
         "sources": "https://github.com/FabricMC/fabric-example-mod"
     },
     "license": "${license}",
-    "icon": "hamemr_mod.png",
+    "icon": "stone.png",
     "environment": "*",
     "entrypoints": {
         "main": [
@@ -34,7 +34,8 @@
         "fabricloader": ">=${fabric_loader_version}",
         "fabric-api": "*",
         "minecraft": "${minecraft_version}",
-        "java": ">=${java_version}"
+        "java": ">=${java_version}",
+        "framework": ">=${framework_version}"
     },
     "suggests": {
         "another-mod": "*"

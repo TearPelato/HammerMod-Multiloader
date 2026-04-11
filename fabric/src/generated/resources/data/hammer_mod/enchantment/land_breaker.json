@@ -1,0 +1,31 @@
+{
+  "anvil_cost": 8,
+  "description": {
+    "translate": "enchantment.hammer_mod.land_breaker"
+  },
+  "effects": {
+    "minecraft:post_attack": [
+      {
+        "affected": "victim",
+        "effect": {
+          "type": "hammer_mod:land_breaker"
+        },
+        "enchanted": "attacker"
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 70,
+    "per_level_above_first": 10
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 30,
+    "per_level_above_first": 10
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#hammer_mod:hammer_can_be_enchanted",
+  "weight": 1
+}

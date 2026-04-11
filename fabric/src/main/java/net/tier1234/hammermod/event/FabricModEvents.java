@@ -19,6 +19,7 @@ import net.tier1234.hammermod.Config;
 import net.tier1234.hammermod.enchantment.custom.AutoSmeltEnchantmentEffect;
 import net.tier1234.hammermod.enchantment.custom.DiggingEnchantmentEffect;
 import net.tier1234.hammermod.enchantment.custom.ExcavatorEnchantmentEffect;
+import net.tier1234.hammermod.enchantment.custom.LandBreakerEnchantmentEffect;
 import net.tier1234.hammermod.item.custom.HammerItem;
 import net.tier1234.hammermod.item.custom.HammerItem2x2;
 import net.tier1234.hammermod.item.custom.HammerItem5x5;
@@ -213,8 +214,27 @@ public class FabricModEvents {
                     }
                 }
             }
+            // ============ LANDBREAKER ENCHANTMENT ============
+            Registry<Enchantment> landbreakerRegistry = world.registryAccess()
+                    .lookupOrThrow(Registries.ENCHANTMENT);
+            Holder<Enchantment> landbreakerHolder = landbreakerRegistry.getOrThrow(ModEnchantments.LAND_BREAKER);
+
+            if (landbreakerHolder != null) {
+                if (mainHandItem.getItem() instanceof HammerItem ||
+                        mainHandItem.getItem() instanceof HammerItem2x2 ||
+                        mainHandItem.getItem() instanceof HammerItem5x5) {
+
+                    int level = EnchantmentHelper.getItemEnchantmentLevel(landbreakerHolder, mainHandItem);
+                    if (level > 0) {
+                        new LandBreakerEnchantmentEffect()
+                                .apply((ServerLevel) world, level, null, serverPlayer, pos.getCenter());
+                    }
+                }
+            }
 
             return true;
         });
+
+
     }
 }

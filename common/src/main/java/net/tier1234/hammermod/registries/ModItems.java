@@ -9,6 +9,7 @@ import net.tier1234.hammermod.Constants;
 import net.tier1234.hammermod.item.custom.HammerItem;
 import net.tier1234.hammermod.item.custom.HammerItem2x2;
 import net.tier1234.hammermod.item.custom.HammerItem5x5;
+import net.tier1234.hammermod.item.custom.MagnetItem;
 
 @RegistryContainer
 public class ModItems {
@@ -146,5 +147,6 @@ public static final RegistryEntry<HammerItem2x2> TINY_STONE_HAMMER = RegistryEnt
 
     public static final RegistryEntry<Item> TINY_STICK = RegistryEntry.item(Constants.id("tiny_stick"), Item::new, Item.Properties::new);
 
+    public static final RegistryEntry<MagnetItem> MAGNET = RegistryEntry.item(Constants.id("magnet"), MagnetItem::new, MagnetItem.Properties::new);
 
 }

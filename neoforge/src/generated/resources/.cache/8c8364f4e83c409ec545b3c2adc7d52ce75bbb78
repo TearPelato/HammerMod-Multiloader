@@ -1,6 +1,7 @@
-// 26.1	2026-04-11T11:58:05.59412	Tags for minecraft:item mod id vanilla
+// 26.1	2026-04-11T20:15:18.1934983	Tags for minecraft:item mod id vanilla
 bde6ca31173d1f22d5f6fe355dc90c9faa35b239 data/hammer_mod/tags/item/amethyst_repairable.json
 6222fd0d7d2ce08ee1f70be68a61f4e167dda650 data/hammer_mod/tags/item/copper_repairable.json
 9449a2552747c300bb76793ecfc313b08a3ca514 data/hammer_mod/tags/item/hammers.json
-8b9f488402b4f455fe4281b19e52562ec10fb9b9 data/minecraft/tags/item/enchantable/mining.json
-8b9f488402b4f455fe4281b19e52562ec10fb9b9 data/minecraft/tags/item/enchantable/mining_loot.json
+9449a2552747c300bb76793ecfc313b08a3ca514 data/hammer_mod/tags/item/hammer_can_be_enchanted.json
+9449a2552747c300bb76793ecfc313b08a3ca514 data/minecraft/tags/item/enchantable/mining.json
+9449a2552747c300bb76793ecfc313b08a3ca514 data/minecraft/tags/item/enchantable/mining_loot.json

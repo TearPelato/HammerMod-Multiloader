@@ -19,6 +19,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.tier1234.hammermod.Config;
 import net.tier1234.hammermod.item.custom.HammerItem2x2;
 
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class Hammer2x2OverlayRenderer {
         Minecraft mc = Minecraft.getInstance();
         LocalPlayer player = mc.player;
         if (player == null || mc.level == null) return;
-
+        if (!Config.CLIENT.showHammerOverlay.get()) return;
         ItemStack held = player.getMainHandItem();
         if (!(held.getItem() instanceof HammerItem2x2)) return;
 

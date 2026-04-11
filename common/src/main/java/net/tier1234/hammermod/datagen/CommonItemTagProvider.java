@@ -38,8 +38,30 @@ public class CommonItemTagProvider extends IntrinsicHolderTagsProvider<Item> {
                         ModItems.GIANT_IRON_HAMMER.get(),ModItems.GIANT_GOLD_HAMMER.get(),ModItems.GIANT_DIAMOND_HAMMER.get(),ModItems.GIANT_NETHERITE_HAMMER.get(),
                         ModItems.GIANT_AMETHYST_HAMMER.get());
         this.tag(ItemTags.MINING_ENCHANTABLE)
-                .addTag(ModTags.Items.HAMMERS);
+                .add(ModItems.STONE_HAMMER.get(), ModItems.COPPER_HAMMER.get(), ModItems.IRON_HAMMER.get(),
+                        ModItems.GOLD_HAMMER.get(), ModItems.DIAMOND_HAMMER.get(), ModItems.NETHERITE_HAMMER.get(),
+                        ModItems.AMETHYST_HAMMER.get(),ModItems.TINY_STONE_HAMMER.get(), ModItems.TINY_COPPER_HAMMER.get(),
+                        ModItems.TINY_IRON_HAMMER.get(),ModItems.TINY_GOLD_HAMMER.get(),ModItems.TINY_DIAMOND_HAMMER.get(),ModItems.TINY_NETHERITE_HAMMER.get(),
+                        ModItems.TINY_AMETHYST_HAMMER.get(),ModItems.GIANT_STONE_HAMMER.get(), ModItems.GIANT_COPPER_HAMMER.get(),
+                        ModItems.GIANT_IRON_HAMMER.get(),ModItems.GIANT_GOLD_HAMMER.get(),ModItems.GIANT_DIAMOND_HAMMER.get(),ModItems.GIANT_NETHERITE_HAMMER.get(),
+                        ModItems.GIANT_AMETHYST_HAMMER.get());
+
         this.tag(ItemTags.MINING_LOOT_ENCHANTABLE)
-                .addTag(ModTags.Items.HAMMERS);
+                .add(ModItems.STONE_HAMMER.get(), ModItems.COPPER_HAMMER.get(), ModItems.IRON_HAMMER.get(),
+                ModItems.GOLD_HAMMER.get(), ModItems.DIAMOND_HAMMER.get(), ModItems.NETHERITE_HAMMER.get(),
+                ModItems.AMETHYST_HAMMER.get(),ModItems.TINY_STONE_HAMMER.get(), ModItems.TINY_COPPER_HAMMER.get(),
+                ModItems.TINY_IRON_HAMMER.get(),ModItems.TINY_GOLD_HAMMER.get(),ModItems.TINY_DIAMOND_HAMMER.get(),ModItems.TINY_NETHERITE_HAMMER.get(),
+                ModItems.TINY_AMETHYST_HAMMER.get(),ModItems.GIANT_STONE_HAMMER.get(), ModItems.GIANT_COPPER_HAMMER.get(),
+                ModItems.GIANT_IRON_HAMMER.get(),ModItems.GIANT_GOLD_HAMMER.get(),ModItems.GIANT_DIAMOND_HAMMER.get(),ModItems.GIANT_NETHERITE_HAMMER.get(),
+                ModItems.GIANT_AMETHYST_HAMMER.get());
+
+        this.tag(ModTags.Items.HAMMER_CAN_BE_ENCHANTED)
+                .add(ModItems.STONE_HAMMER.get(), ModItems.COPPER_HAMMER.get(), ModItems.IRON_HAMMER.get(),
+                        ModItems.GOLD_HAMMER.get(), ModItems.DIAMOND_HAMMER.get(), ModItems.NETHERITE_HAMMER.get(),
+                        ModItems.AMETHYST_HAMMER.get(),ModItems.TINY_STONE_HAMMER.get(), ModItems.TINY_COPPER_HAMMER.get(),
+                        ModItems.TINY_IRON_HAMMER.get(),ModItems.TINY_GOLD_HAMMER.get(),ModItems.TINY_DIAMOND_HAMMER.get(),ModItems.TINY_NETHERITE_HAMMER.get(),
+                        ModItems.TINY_AMETHYST_HAMMER.get(),ModItems.GIANT_STONE_HAMMER.get(), ModItems.GIANT_COPPER_HAMMER.get(),
+                        ModItems.GIANT_IRON_HAMMER.get(),ModItems.GIANT_GOLD_HAMMER.get(),ModItems.GIANT_DIAMOND_HAMMER.get(),ModItems.GIANT_NETHERITE_HAMMER.get(),
+                        ModItems.GIANT_AMETHYST_HAMMER.get());
     }
 }

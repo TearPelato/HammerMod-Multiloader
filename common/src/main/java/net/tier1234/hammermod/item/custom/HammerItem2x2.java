@@ -23,6 +23,7 @@ public class HammerItem2x2 extends Item {
     }
     // Inside HammerItem class
     public static List<BlockPos> getBlocksToBeDestroyed(BlockPos initialBlockPos, ServerPlayer player) {
+        if (player.isCrouching()) return List.of();
         List<BlockPos> positions = new ArrayList<>();
 
         BlockHitResult traceResult = player.level().clip(new ClipContext(

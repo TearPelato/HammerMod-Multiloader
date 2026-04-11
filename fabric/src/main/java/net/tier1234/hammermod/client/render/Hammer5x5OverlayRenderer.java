@@ -21,6 +21,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.tier1234.hammermod.Config;
 import net.tier1234.hammermod.item.custom.HammerItem5x5;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class Hammer5x5OverlayRenderer {
             Minecraft mc = Minecraft.getInstance();
             LocalPlayer player = mc.player;
             if (player == null || mc.level == null) return true;
-
+            if (!Config.CLIENT.showHammerOverlay.get()) return false;
             ItemStack held = player.getMainHandItem();
             if (!(held.getItem() instanceof HammerItem5x5)) return true;
 

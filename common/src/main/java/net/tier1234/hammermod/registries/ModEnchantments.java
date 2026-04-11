@@ -10,10 +10,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.EnchantmentTarget;
 import net.tier1234.hammermod.Constants;
-import net.tier1234.hammermod.enchantment.custom.AutoSmeltEnchantmentEffect;
-import net.tier1234.hammermod.enchantment.custom.DiggingEnchantmentEffect;
-import net.tier1234.hammermod.enchantment.custom.ExcavatorEnchantmentEffect;
-import net.tier1234.hammermod.enchantment.custom.VeinMinerEnchantmentEffect;
+import net.tier1234.hammermod.enchantment.custom.*;
+import net.tier1234.hammermod.util.ModTags;
 
 public class ModEnchantments {
 
@@ -34,6 +32,10 @@ public class ModEnchantments {
     public static final ResourceKey<Enchantment> AUTOSMELT = ResourceKey.create(
             Registries.ENCHANTMENT,
             Identifier.fromNamespaceAndPath(Constants.MOD_ID, "autosmelt")
+    );
+    public static final ResourceKey<Enchantment> LAND_BREAKER = ResourceKey.create(
+            Registries.ENCHANTMENT,
+            Identifier.fromNamespaceAndPath(Constants.MOD_ID, "land_breaker")
     );
 
 
@@ -104,6 +106,21 @@ public class ModEnchantments {
                 EnchantmentTarget.ATTACKER,
                 EnchantmentTarget.VICTIM,
                 new AutoSmeltEnchantmentEffect()
+        ));
+
+        register(context, LAND_BREAKER, Enchantment.enchantment(Enchantment.definition(
+                items.getOrThrow(ModTags.Items.HAMMER_CAN_BE_ENCHANTED),
+                1,
+                1,
+                Enchantment.dynamicCost(30, 10),
+                Enchantment.dynamicCost(70, 10),
+                8,
+                EquipmentSlotGroup.MAINHAND
+        )).withEffect(
+                EnchantmentEffectComponents.POST_ATTACK,
+                EnchantmentTarget.ATTACKER,
+                EnchantmentTarget.VICTIM,
+                new LandBreakerEnchantmentEffect()
         ));
 
     }

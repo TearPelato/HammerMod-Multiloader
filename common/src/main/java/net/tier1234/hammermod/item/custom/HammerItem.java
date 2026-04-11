@@ -22,6 +22,7 @@ public class HammerItem extends Item {
         super(properties.enchantable(25));
     }
     public static List<BlockPos> getBlocksToBeDestroyed(int range, BlockPos initalBlockPos, ServerPlayer player) {
+        if (player.isCrouching()) return List.of();
         List<BlockPos> positions = new ArrayList<>();
 
         BlockHitResult traceResult = player.level().clip(new ClipContext(player.getEyePosition(1f),

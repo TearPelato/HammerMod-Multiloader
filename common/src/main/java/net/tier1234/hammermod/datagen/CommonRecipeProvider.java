@@ -206,6 +206,24 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_cobblestone", has(Items.COPPER_INGOT))
                 .save(this.output);
 
+        this.shaped(RecipeCategory.MISC, ModItems.TINY_STICK.get())
+                .pattern(" A ")
+                .pattern(" B ")
+                .define('A', Items.STICK.asItem())
+                .define('B', Items.IRON_NUGGET.asItem())
+                .unlockedBy("has_stick", has(Items.STICK))
+                .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
+                .save(this.output);
+
+        this.shaped(RecipeCategory.MISC, ModItems.MAGNET.get())
+                .pattern("AA ")
+                .pattern("BB ")
+                .define('A', Items.IRON_INGOT.asItem())
+                .define('B', Items.REDSTONE.asItem())
+                .unlockedBy("has_iron_ingot", has(Items.IRON_NUGGET))
+                .unlockedBy("has_redstone", has(Items.REDSTONE))
+                .save(this.output);
+
 
         //Giant Hammers
         SmithingTransformRecipeBuilder.smithing(

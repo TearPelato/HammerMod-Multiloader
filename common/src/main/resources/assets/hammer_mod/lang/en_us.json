@@ -37,6 +37,7 @@
   "item.hammer_mod.giant_amethyst_hammer": "Giant Amethyst Hammer",
   "item.hammer_mod.giant_amethyst_head": "Giant Amethyst Head",
   "item.hammer_mod.hammer_smithing_template.desc": "Hammer Upgrade",
+  "item.hammer_mod.magnet": "Magnet",
   "item.hammer_mod.hammer_smithing_template.applies_to.desc": "Giant Head, Tiny Stick, Hammer Head",
   "item.hammer_mod.hammer_smithing_template.ingredients.desc": "Giant Head, Tiny Stick, Hammer Head",
   "item.hammer_mod.hammer_smithing_template.base_slot.desc": "Armor Slot",
@@ -55,6 +56,7 @@
   "enchantment.hammer_mod.autosmelt": "AutoSmelt",
   "enchantment.hammer_mod.excavator": "Excavator",
   "enchantment.hammer_mod.veinminer": "VeinMiner",
+  "enchantment.hammer_mod.land_breaker": "Land Breaker",
 
 
   "hammer_mod.configuration.veinminer_group": "VeinMiner Block Config"

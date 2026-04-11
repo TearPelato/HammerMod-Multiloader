@@ -22,10 +22,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.tier1234.hammermod.Constants;
-import net.tier1234.hammermod.enchantment.custom.AutoSmeltEnchantmentEffect;
-import net.tier1234.hammermod.enchantment.custom.DiggingEnchantmentEffect;
-import net.tier1234.hammermod.enchantment.custom.ExcavatorEnchantmentEffect;
-import net.tier1234.hammermod.enchantment.custom.VeinMinerEnchantmentEffect;
+import net.tier1234.hammermod.enchantment.custom.*;
 import net.tier1234.hammermod.item.custom.HammerItem;
 import net.tier1234.hammermod.item.custom.HammerItem2x2;
 import net.tier1234.hammermod.item.custom.HammerItem5x5;
@@ -257,6 +254,30 @@ public class NeoForgeModEvents {
         level.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, pos, Block.getId(state));
 
     }
+    @SubscribeEvent
+    public static void onBlockBreakLandBreaker(BlockEvent.BreakEvent event) {
+        if (!(event.getPlayer() instanceof ServerPlayer player)) return;
 
+        Level level = player.level();
+        if (level.isClientSide()) return;
+
+        ItemStack tool = player.getMainHandItem();
+        if (!(tool.getItem() instanceof HammerItem) &&
+                !(tool.getItem() instanceof HammerItem2x2) &&
+                !(tool.getItem() instanceof HammerItem5x5)) return;
+
+        Registry<Enchantment> enchantmentRegistry = level.registryAccess()
+                .lookupOrThrow(Registries.ENCHANTMENT);
+        Holder<Enchantment> enchantmentHolder = enchantmentRegistry.getOrThrow(ModEnchantments.LAND_BREAKER);
+
+        if (enchantmentHolder == null) return;
+
+        int enchantLevel = EnchantmentHelper.getItemEnchantmentLevel(enchantmentHolder, tool);
+        if (enchantLevel <= 0) return;
+
+        BlockPos pos = event.getPos();
+        LandBreakerEnchantmentEffect effect = new LandBreakerEnchantmentEffect();
+        effect.apply((ServerLevel) level, enchantLevel, null, player, pos.getCenter());
+    }
 
 }

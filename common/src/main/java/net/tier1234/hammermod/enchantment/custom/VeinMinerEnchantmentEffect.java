@@ -4,12 +4,14 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.EnchantedItemInUse;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -68,7 +70,19 @@ public class VeinMinerEnchantmentEffect implements EnchantmentEntityEffect {
             BlockState state = serverLevel.getBlockState(current);
 
             if (state.getBlock() != targetBlock) continue;
-
+            if (!Config.CLIENT.veinminerBreakAnyBlock.get()) {
+                if (!serverLevel.getBlockState(current).is(BlockTags.COAL_ORES) &&
+                        !serverLevel.getBlockState(current).is(BlockTags.IRON_ORES) &&
+                        !serverLevel.getBlockState(current).is(BlockTags.GOLD_ORES) &&
+                        !serverLevel.getBlockState(current).is(BlockTags.DIAMOND_ORES) &&
+                        !serverLevel.getBlockState(current).is(BlockTags.EMERALD_ORES) &&
+                        !serverLevel.getBlockState(current).is(BlockTags.LAPIS_ORES) &&
+                        !serverLevel.getBlockState(current).is(BlockTags.REDSTONE_ORES) &&
+                        !serverLevel.getBlockState(current).is(BlockTags.COPPER_ORES) &&
+                        !serverLevel.getBlockState(current).is(Blocks.ANCIENT_DEBRIS)) {
+                    continue;
+                }
+            }
             if (!current.equals(startPos)) {
                 serverLevel.destroyBlock(current, true, user);
                 broken++;

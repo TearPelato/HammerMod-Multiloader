@@ -27,6 +27,7 @@ public class ModTags {
         public static final TagKey<Item> COPPER_REPAIRABLE = createTag("copper_repairable");
 
         public static final TagKey<Item> HAMMERS = createTag("hammers");
+        public static final TagKey<Item> HAMMER_CAN_BE_ENCHANTED = createTag("hammer_can_be_enchanted");
 
         private static TagKey<Item> createTag(String name) {
             return TagKey.create(Registries.ITEM,

@@ -1,4 +1,4 @@
-// 26.1	2026-04-10T17:53:34.0607061	Mod Recipes
+// 26.1	2026-04-11T19:51:29.6330453	Mod Recipes
 b8436f54c4f85427fd50cf6f3654df4d5cc59fec data/hammer_mod/advancement/recipes/misc/amethyst_hammer.json
 ad294da476fcb20cb099cf3d4ef5cf9e1a563391 data/hammer_mod/advancement/recipes/misc/amethyst_head.json
 3ed61d5ffea85e48abb657aec4dc215e65080ec5 data/hammer_mod/advancement/recipes/misc/copper_hammer.json
@@ -16,8 +16,10 @@ cc261fa06aed4fdab9662af6dbf6bfd11518ac09 data/hammer_mod/advancement/recipes/mis
 7ef3a79633065256629223ae6083a1c4c0bc2045 data/hammer_mod/advancement/recipes/misc/hammer_smithing_template.json
 c19a4870440aa13450e2f716ba2644e568cb0cfa data/hammer_mod/advancement/recipes/misc/iron_hammer.json
 7c50da56b038a97762a439c268b82a149044e909 data/hammer_mod/advancement/recipes/misc/iron_head.json
+9266d8bf7ccfce24bdd9bac5015e30b684467f88 data/hammer_mod/advancement/recipes/misc/magnet.json
 4a1294942348650fbc987e1bfd15d42b995942f0 data/hammer_mod/advancement/recipes/misc/stone_hammer.json
 4988def9df5ef80ffd19b3cef405fa95e54ab615 data/hammer_mod/advancement/recipes/misc/stone_head.json
+e53817f711f57cca862fe1f3417a1f3a686d9318 data/hammer_mod/advancement/recipes/misc/tiny_stick.json
 39d3c136d43d7cf5f13df7fc87a3d53c836feded data/hammer_mod/advancement/recipes/tools/giant_amethyst_hammer.json
 82e9b7f077c166301b509a6c0fa2c3e0144c8bd1 data/hammer_mod/advancement/recipes/tools/giant_copper_hammer.json
 3818d5e4f136fcd21ef48c370afbfab67e74ce3b data/hammer_mod/advancement/recipes/tools/giant_diamond_hammer.json
@@ -56,6 +58,7 @@ e1a6f01994f227541fc04ae43b31298b2fba3e3a data/hammer_mod/recipe/gold_hammer.json
 1b8a4faf7dc31e6c2864a28a0ae2146b355bcc96 data/hammer_mod/recipe/hammer_smithing_template.json
 faaac206322d2f3481a19c517156f288abae7274 data/hammer_mod/recipe/iron_hammer.json
 e7d8cdccfe1b8164d20083b748d9881135aa6999 data/hammer_mod/recipe/iron_head.json
+1619b6b03f36cef7f70fcbf78fe8a3cb123ac6ad data/hammer_mod/recipe/magnet.json
 4170bfc52fb599d0fe0887e8bc4ab249810a5641 data/hammer_mod/recipe/stone_hammer.json
 2f91480e5dcebfd8df14cbc84010a3105e3b7404 data/hammer_mod/recipe/stone_head.json
 29009fd34fa21f76ca53783c68af9dabf9ad70d6 data/hammer_mod/recipe/tiny_amethyst_hammer.json
@@ -64,6 +67,7 @@ e7d8cdccfe1b8164d20083b748d9881135aa6999 data/hammer_mod/recipe/iron_head.json
 0d1a6970a695496ddd3c249c6b8e6b71607e4684 data/hammer_mod/recipe/tiny_gold_hammer.json
 61137add4aa8ba2c5c5dc3bda1147f526c846a4a data/hammer_mod/recipe/tiny_iron_hammer.json
 889bb36371be950a5398917644c6ddecbff84235 data/hammer_mod/recipe/tiny_netherite_hammer.json
+3cf57948f3a1031e49b7474fe2a103ee6e967419 data/hammer_mod/recipe/tiny_stick.json
 d991178b054d67983703cbe0c6e8c16e75bb3781 data/hammer_mod/recipe/tiny_stone_hammer.json
 532302cefc43ed033d09d9910b08eba637418be4 data/minecraft/advancement/recipes/tools/giant_netherite_hammer_smithing.json
 cf648169c0b953032acb277c509facd24d1bc840 data/minecraft/advancement/recipes/tools/giant_netherite_head_smithing.json

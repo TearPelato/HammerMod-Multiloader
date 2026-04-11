@@ -22,6 +22,7 @@ public class HammerItem5x5 extends Item {
         super(properties.enchantable(25));
     }
     public static List<BlockPos> getBlocksToBeDestroyed(BlockPos initialBlockPos, ServerPlayer player) {
+        if (player.isCrouching()) return List.of();
         List<BlockPos> positions = new ArrayList<>();
         int range = 2; // 5x5 area => -2 to +2 in both dimensions
 

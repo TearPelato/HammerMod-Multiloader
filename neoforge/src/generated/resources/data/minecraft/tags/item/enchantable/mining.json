@@ -1,5 +1,25 @@
 {
   "values": [
-    "#hammer_mod:hammers"
+    "hammer_mod:stone_hammer",
+    "hammer_mod:copper_hammer",
+    "hammer_mod:iron_hammer",
+    "hammer_mod:gold_hammer",
+    "hammer_mod:diamond_hammer",
+    "hammer_mod:netherite_hammer",
+    "hammer_mod:amethyst_hammer",
+    "hammer_mod:tiny_stone_hammer",
+    "hammer_mod:tiny_copper_hammer",
+    "hammer_mod:tiny_iron_hammer",
+    "hammer_mod:tiny_gold_hammer",
+    "hammer_mod:tiny_diamond_hammer",
+    "hammer_mod:tiny_netherite_hammer",
+    "hammer_mod:tiny_amethyst_hammer",
+    "hammer_mod:giant_stone_hammer",
+    "hammer_mod:giant_copper_hammer",
+    "hammer_mod:giant_iron_hammer",
+    "hammer_mod:giant_gold_hammer",
+    "hammer_mod:giant_diamond_hammer",
+    "hammer_mod:giant_netherite_hammer",
+    "hammer_mod:giant_amethyst_hammer"
   ]
 }
