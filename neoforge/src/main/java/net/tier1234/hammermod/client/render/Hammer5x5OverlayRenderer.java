@@ -37,7 +37,7 @@ public class Hammer5x5OverlayRenderer {
         Minecraft mc = Minecraft.getInstance();
         LocalPlayer player = mc.player;
         if (player == null || mc.level == null) return;
-        if (!Config.CLIENT.showHammerOverlay.get()) return;
+        if (!Config.CLIENT.miscSettings.showHammerOverlay.get()) return;
         ItemStack held = player.getMainHandItem();
         if (!(held.getItem() instanceof HammerItem5x5)) return;
 

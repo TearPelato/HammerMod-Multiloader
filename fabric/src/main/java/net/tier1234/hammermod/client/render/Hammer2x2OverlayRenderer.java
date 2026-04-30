@@ -34,7 +34,7 @@ public class Hammer2x2OverlayRenderer {
             Minecraft mc = Minecraft.getInstance();
             LocalPlayer player = mc.player;
             if (player == null || mc.level == null) return true;
-            if (!Config.CLIENT.showHammerOverlay.get()) return false;
+            if (!Config.CLIENT.miscSettings.showHammerOverlay.get()) return false;
             ItemStack held = player.getMainHandItem();
             if (!(held.getItem() instanceof HammerItem2x2)) return true;
 

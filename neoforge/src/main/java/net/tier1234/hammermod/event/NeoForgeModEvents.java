@@ -10,7 +10,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -20,7 +19,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.level.block.BreakBlockEvent;
 import net.tier1234.hammermod.Constants;
 import net.tier1234.hammermod.enchantment.custom.*;
 import net.tier1234.hammermod.item.custom.HammerItem;
@@ -40,7 +39,7 @@ public class NeoForgeModEvents {
     // Done with the help of https://github.com/CoFH/CoFHCore/blob/1.19.x/src/main/java/cofh/core/event/AreaEffectEvents.java
     // Don't be a jerk License
     @SubscribeEvent
-    public static void onHammerUsage(BlockEvent.BreakEvent event) {
+    public static void onHammerUsage(BreakBlockEvent event) {
         Player player = event.getPlayer();
         ItemStack mainHandItem = player.getMainHandItem();
 
@@ -62,7 +61,7 @@ public class NeoForgeModEvents {
         }
     }
     @SubscribeEvent
-    public static void onHammer2x2Usage(BlockEvent.BreakEvent event) {
+    public static void onHammer2x2Usage(BreakBlockEvent event) {
         Player player = event.getPlayer();
         ItemStack mainHandItem = player.getMainHandItem();
 
@@ -90,7 +89,7 @@ public class NeoForgeModEvents {
         }
     }
     @SubscribeEvent
-    public static void onHammer5x5Usage(BlockEvent.BreakEvent event) {
+    public static void onHammer5x5Usage(BreakBlockEvent event) {
         Player player = event.getPlayer();
         ItemStack mainHandItem = player.getMainHandItem();
 
@@ -123,7 +122,7 @@ public class NeoForgeModEvents {
     }
 
     @SubscribeEvent
-    public static void onBlockBreakDigging(BlockEvent.BreakEvent event) {
+    public static void onBlockBreakDigging(BreakBlockEvent event) {
         if (!(event.getPlayer() instanceof ServerPlayer player)) return;
 
         Level level = player.level();
@@ -146,7 +145,7 @@ public class NeoForgeModEvents {
     }
 
     @SubscribeEvent
-    public static void onBlockBreakExcavator(BlockEvent.BreakEvent event) {
+    public static void onBlockBreakExcavator(BreakBlockEvent event) {
         if (!(event.getPlayer() instanceof ServerPlayer player)) return;
 
         Level level = player.level();
@@ -170,7 +169,7 @@ public class NeoForgeModEvents {
 
 
     @SubscribeEvent
-    public static void onBlockBreakVeinMiner(BlockEvent.BreakEvent event) {
+    public static void onBlockBreakVeinMiner(BreakBlockEvent event) {
         if (!(event.getPlayer() instanceof ServerPlayer player)) return;
 
         Level level = player.level();
@@ -196,7 +195,7 @@ public class NeoForgeModEvents {
     }
 
     @SubscribeEvent
-    public static void onBlockBreakAutoSmelt(BlockEvent.BreakEvent event) {
+    public static void onBlockBreakAutoSmelt(BreakBlockEvent event) {
         Player player = event.getPlayer();
         if (player == null || player.level().isClientSide()) return;
 
@@ -255,7 +254,7 @@ public class NeoForgeModEvents {
 
     }
     @SubscribeEvent
-    public static void onBlockBreakLandBreaker(BlockEvent.BreakEvent event) {
+    public static void onBlockBreakLandBreaker(BreakBlockEvent event) {
         if (!(event.getPlayer() instanceof ServerPlayer player)) return;
 
         Level level = player.level();

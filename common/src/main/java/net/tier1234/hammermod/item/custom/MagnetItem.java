@@ -18,7 +18,7 @@ import java.util.List;
 public class MagnetItem extends Item {
 
     public MagnetItem(Properties properties) {
-        super(properties);
+        super(properties.stacksTo(1));
     }
 
     @Override
@@ -28,7 +28,7 @@ public class MagnetItem extends Item {
     }
 
     public static void applyMagnet(ServerPlayer player, ServerLevel level) {
-        double radius = Config.CLIENT.magnetRadius.get();
+        double radius = Config.CLIENT.miscSettings.magnetRadius.get();
         BlockPos center = player.blockPosition();
 
         List<ItemEntity> nearbyItems = level.getEntitiesOfClass(
