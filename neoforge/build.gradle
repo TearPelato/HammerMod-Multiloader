@@ -51,8 +51,8 @@ repositories {
 dependencies {
     implementation "net.neoforged:neoforge:${neoforge_version}"
     implementation "com.mrcrayfish:framework-neoforge:${framework_version}+${minecraft_version}"
-    implementation "curse.maven:configured-457570:7820636"
-    implementation "curse.maven:catalogue-459701:7815468"
+   /* implementation "curse.maven:configured-457570:7820636"
+    implementation "curse.maven:catalogue-459701:7815468"*/
 }
 
 sourceSets.main.resources {

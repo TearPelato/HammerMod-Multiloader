@@ -1,20 +1,16 @@
 package net.tier1234.hammermod.datagen;
 
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Block;
 import net.tier1234.hammermod.util.ModTags;
 
 import java.util.concurrent.CompletableFuture;
 
-public class CommonBlockTagGen extends TagsProvider<Block> {
-
-    public CommonBlockTagGen(PackOutput output, CompletableFuture<HolderLookup.Provider> completableFuture)
-    {
-        super(output, Registries.BLOCK, completableFuture);
+public class FabricBlockTagsProvider extends FabricTagsProvider.BlockTagsProvider {
+    public FabricBlockTagsProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registryLookupFuture) {
+        super(output, registryLookupFuture);
     }
 
     @Override

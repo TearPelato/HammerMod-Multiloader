@@ -9,7 +9,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.ShapeRenderer;
+import net.minecraft.client.renderer.feature.ShapeOutlineFeatureRenderer;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -56,11 +56,9 @@ public class Hammer2x2OverlayRenderer {
     private static void renderArea(LevelRenderContext context, Minecraft mc,
                                    LocalPlayer player, List<BlockPos> area) {
         PoseStack poseStack = context.poseStack();
-        Camera camera = mc.gameRenderer.getMainCamera();
+        Camera camera = mc.gameRenderer.mainCamera();
         Vec3 camPos = camera.position();
 
-        VertexConsumer vertexConsumer = context.bufferSource()
-                .getBuffer(RenderTypes.LINES);
 
         for (BlockPos pos : area) {
             BlockState state = mc.level.getBlockState(pos);
@@ -76,19 +74,11 @@ public class Hammer2x2OverlayRenderer {
             poseStack.pushPose();
             poseStack.translate(dx, dy, dz);
 
-            ShapeRenderer.renderShape(
-                    poseStack,
-                    vertexConsumer,
-                    shape,
-                    0.0, 0.0, 0.0,
-                    0xFF000000,
-                    2.0f
-            );
+            new ShapeOutlineFeatureRenderer.Submit(poseStack.last(), shape, RenderTypes.LINES, 0xFF000000, 2.0f);
 
             poseStack.popPose();
         }
 
-        context.bufferSource().endBatch(RenderTypes.LINES);
     }
 
     private static List<BlockPos> get2x2Blocks(BlockPos target, Direction face, Vec3 hitLocation) {

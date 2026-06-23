@@ -6,6 +6,7 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Blocks;
 import net.tier1234.hammermod.Constants;
 import net.tier1234.hammermod.registries.ModItems;
 
@@ -201,7 +202,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.shaped(RecipeCategory.MISC, ModItems.GIANT_COPPER_HEAD.get())
                 .pattern("###")
                 .pattern("#C#")
-                .define('#', Items.COPPER_BLOCK.asItem())
+                .define('#', Blocks.COPPER_BLOCK.asList().get(0))
                 .define('C', Items.COPPER_INGOT.asItem())
                 .unlockedBy("has_cobblestone", has(Items.COPPER_INGOT))
                 .save(this.output);

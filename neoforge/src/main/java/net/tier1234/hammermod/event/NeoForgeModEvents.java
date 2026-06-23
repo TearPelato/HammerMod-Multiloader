@@ -3,6 +3,7 @@ package net.tier1234.hammermod.event;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.core.Vec3i;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -16,6 +17,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -141,7 +143,7 @@ public class NeoForgeModEvents {
 
         BlockPos pos = event.getPos();
         DiggingEnchantmentEffect effect = new DiggingEnchantmentEffect();
-        effect.apply((ServerLevel) level, enchantLevel, null, player, pos.getCenter());
+        effect.apply((ServerLevel) level, enchantLevel, null, player, Vec3.atCenterOf(pos));
     }
 
     @SubscribeEvent
@@ -164,7 +166,7 @@ public class NeoForgeModEvents {
 
         BlockPos pos = event.getPos();
         ExcavatorEnchantmentEffect effect = new ExcavatorEnchantmentEffect();
-        effect.apply((ServerLevel) level, enchantLevel, null, player, pos.getCenter());
+        effect.apply((ServerLevel) level, enchantLevel, null, player, Vec3.atCenterOf(pos));
     }
 
 
@@ -191,7 +193,7 @@ public class NeoForgeModEvents {
 
         // Applica l'effetto
         VeinMinerEnchantmentEffect effect = new VeinMinerEnchantmentEffect();
-        effect.apply((ServerLevel) level, enchantLevel, null, player, pos.getCenter());
+        effect.apply((ServerLevel) level, enchantLevel, null, player, Vec3.atCenterOf(pos));
     }
 
     @SubscribeEvent
@@ -276,7 +278,7 @@ public class NeoForgeModEvents {
 
         BlockPos pos = event.getPos();
         LandBreakerEnchantmentEffect effect = new LandBreakerEnchantmentEffect();
-        effect.apply((ServerLevel) level, enchantLevel, null, player, pos.getCenter());
+        effect.apply((ServerLevel) level, enchantLevel, null, player, Vec3.atCenterOf(pos));
     }
 
 }

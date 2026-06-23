@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.tier1234.hammermod.Config;
 import net.tier1234.hammermod.enchantment.custom.AutoSmeltEnchantmentEffect;
 import net.tier1234.hammermod.enchantment.custom.DiggingEnchantmentEffect;
@@ -145,7 +146,7 @@ public class FabricModEvents {
                 int level = EnchantmentHelper.getItemEnchantmentLevel(diggingHolder, mainHandItem);
                 if (level > 0) {
                     new DiggingEnchantmentEffect()
-                            .apply((ServerLevel) world, level, null, serverPlayer, pos.getCenter());
+                            .apply((ServerLevel) world, level, null, serverPlayer, Vec3.atCenterOf(pos));
                 }
             }
 
@@ -159,7 +160,7 @@ public class FabricModEvents {
                 int level = EnchantmentHelper.getItemEnchantmentLevel(excavatorHolder, mainHandItem);
                 if (level > 0) {
                     new ExcavatorEnchantmentEffect()
-                            .apply((ServerLevel) world, level, null, serverPlayer, pos.getCenter());
+                            .apply((ServerLevel) world, level, null, serverPlayer, Vec3.atCenterOf(pos));
                 }
             }
 
@@ -227,7 +228,7 @@ public class FabricModEvents {
                     int level = EnchantmentHelper.getItemEnchantmentLevel(landbreakerHolder, mainHandItem);
                     if (level > 0) {
                         new LandBreakerEnchantmentEffect()
-                                .apply((ServerLevel) world, level, null, serverPlayer, pos.getCenter());
+                                .apply((ServerLevel) world, level, null, serverPlayer, Vec3.atCenterOf(pos));
                     }
                 }
             }

@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.ShapeRenderer;
+import net.minecraft.client.renderer.feature.ShapeOutlineFeatureRenderer;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -58,9 +58,6 @@ public class HammerOverlayRenderer {
         PoseStack poseStack = event.getPoseStack();
         Vec3 camPos = event.getLevelRenderState().cameraRenderState.pos;
 
-        VertexConsumer vertexConsumer = mc.renderBuffers()
-                .bufferSource()
-                .getBuffer(RenderTypes.lines());
 
         for (BlockPos pos : area) {
             BlockState state = mc.level.getBlockState(pos);
@@ -76,11 +73,7 @@ public class HammerOverlayRenderer {
             poseStack.pushPose();
             poseStack.translate(dx, dy, dz);
 
-            ShapeRenderer.renderShape(
-                    poseStack, vertexConsumer, shape,
-                    0, 0, 0.0,
-                    0xFF000000, 3.0f
-            );
+            new ShapeOutlineFeatureRenderer.Submit(poseStack.last(), shape, RenderTypes.LINES, 0xFF000000, 2.0f);
 
             poseStack.popPose();
         }

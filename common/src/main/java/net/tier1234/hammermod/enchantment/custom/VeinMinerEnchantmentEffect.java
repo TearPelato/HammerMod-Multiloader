@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockItemTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -71,13 +72,13 @@ public class VeinMinerEnchantmentEffect implements EnchantmentEntityEffect {
 
             if (state.getBlock() != targetBlock) continue;
             if (!Config.CLIENT.veinMineSettings.veinminerBreakAnyBlock.get()) {
-                if (!serverLevel.getBlockState(current).is(BlockTags.COAL_ORES) &&
+                if (!serverLevel.getBlockState(current).is(BlockItemTags.COAL_ORES.block()) &&
                         !serverLevel.getBlockState(current).is(BlockTags.IRON_ORES) &&
                         !serverLevel.getBlockState(current).is(BlockTags.GOLD_ORES) &&
-                        !serverLevel.getBlockState(current).is(BlockTags.DIAMOND_ORES) &&
-                        !serverLevel.getBlockState(current).is(BlockTags.EMERALD_ORES) &&
-                        !serverLevel.getBlockState(current).is(BlockTags.LAPIS_ORES) &&
-                        !serverLevel.getBlockState(current).is(BlockTags.REDSTONE_ORES) &&
+                        !serverLevel.getBlockState(current).is(BlockItemTags.DIAMOND_ORES.block()) &&
+                        !serverLevel.getBlockState(current).is(BlockItemTags.EMERALD_ORES.block()) &&
+                        !serverLevel.getBlockState(current).is(BlockItemTags.LAPIS_ORES.block()) &&
+                        !serverLevel.getBlockState(current).is(BlockItemTags.REDSTONE_ORES.block()) &&
                         !serverLevel.getBlockState(current).is(BlockTags.COPPER_ORES) &&
                         !serverLevel.getBlockState(current).is(Blocks.ANCIENT_DEBRIS)) {
                     continue;
