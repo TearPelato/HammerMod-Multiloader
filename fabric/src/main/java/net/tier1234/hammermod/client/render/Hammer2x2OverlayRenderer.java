@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.feature.ShapeOutlineFeatureRenderer;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.core.BlockPos;
@@ -35,6 +36,7 @@ public class Hammer2x2OverlayRenderer {
             LocalPlayer player = mc.player;
             if (player == null || mc.level == null) return true;
             if (!Config.CLIENT.miscSettings.showHammerOverlay.get()) return false;
+
             ItemStack held = player.getMainHandItem();
             if (!(held.getItem() instanceof HammerItem2x2)) return true;
 
@@ -44,11 +46,9 @@ public class Hammer2x2OverlayRenderer {
             BlockPos target = blockHit.getBlockPos();
             Direction face = blockHit.getDirection();
             Vec3 hitLocation = blockHit.getLocation();
-
             List<BlockPos> area = get2x2Blocks(target, face, hitLocation);
 
             renderArea(context, mc, player, area);
-
             return false;
         });
     }
@@ -56,9 +56,8 @@ public class Hammer2x2OverlayRenderer {
     private static void renderArea(LevelRenderContext context, Minecraft mc,
                                    LocalPlayer player, List<BlockPos> area) {
         PoseStack poseStack = context.poseStack();
-        Camera camera = mc.gameRenderer.mainCamera();
-        Vec3 camPos = camera.position();
-
+        SubmitNodeCollector submitNodeCollector = context.submitNodeCollector();
+        Vec3 camPos = context.levelState().cameraRenderState.pos;
 
         for (BlockPos pos : area) {
             BlockState state = mc.level.getBlockState(pos);
@@ -74,7 +73,14 @@ public class Hammer2x2OverlayRenderer {
             poseStack.pushPose();
             poseStack.translate(dx, dy, dz);
 
-            new ShapeOutlineFeatureRenderer.Submit(poseStack.last(), shape, RenderTypes.LINES, 0xFF000000, 2.0f);
+            submitNodeCollector.submitShapeOutline(
+                    poseStack,
+                    shape,
+                    RenderTypes.LINES,
+                    0xFF000000,
+                    2.0f,
+                    false
+            );
 
             poseStack.popPose();
         }
@@ -89,7 +95,6 @@ public class Hammer2x2OverlayRenderer {
         double lz = hitLocation.z - Math.floor(hitLocation.z);
 
         int offA, offB;
-
         switch (face.getAxis()) {
             case Y -> {
                 offA = lx < 0.5 ? -1 : 0;

@@ -5,10 +5,9 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderContext;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
-import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.feature.ShapeOutlineFeatureRenderer;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -34,6 +33,7 @@ public class Hammer5x5OverlayRenderer {
             LocalPlayer player = mc.player;
             if (player == null || mc.level == null) return true;
             if (!Config.CLIENT.miscSettings.showHammerOverlay.get()) return false;
+
             ItemStack held = player.getMainHandItem();
             if (!(held.getItem() instanceof HammerItem5x5)) return true;
 
@@ -42,11 +42,9 @@ public class Hammer5x5OverlayRenderer {
 
             BlockPos target = blockHit.getBlockPos();
             Direction face = blockHit.getDirection();
-
             List<BlockPos> area = getSymmetricBlocks(target, face, 2);
 
             renderArea(context, mc, player, area);
-
             return false;
         });
     }
@@ -54,9 +52,8 @@ public class Hammer5x5OverlayRenderer {
     private static void renderArea(LevelRenderContext context, Minecraft mc,
                                    LocalPlayer player, List<BlockPos> area) {
         PoseStack poseStack = context.poseStack();
-        Camera camera = mc.gameRenderer.mainCamera();
-        Vec3 camPos = camera.position();
-
+        SubmitNodeCollector submitNodeCollector = context.submitNodeCollector();
+        Vec3 camPos = context.levelState().cameraRenderState.pos;
 
         for (BlockPos pos : area) {
             BlockState state = mc.level.getBlockState(pos);
@@ -72,8 +69,14 @@ public class Hammer5x5OverlayRenderer {
             poseStack.pushPose();
             poseStack.translate(dx, dy, dz);
 
-            new ShapeOutlineFeatureRenderer.Submit(poseStack.last(), shape, RenderTypes.LINES, 0xFF000000, 2.0f);
-
+            submitNodeCollector.submitShapeOutline(
+                    poseStack,
+                    shape,
+                    RenderTypes.LINES,
+                    0xFF000000,
+                    5.0f,
+                    false
+            );
 
             poseStack.popPose();
         }
@@ -82,7 +85,6 @@ public class Hammer5x5OverlayRenderer {
     private static List<BlockPos> getSymmetricBlocks(BlockPos target, Direction face, int radius) {
         List<BlockPos> blocks = new ArrayList<>();
         Direction.Axis axis = face.getAxis();
-
         for (int a = -radius; a <= radius; a++)
             for (int b = -radius; b <= radius; b++)
                 blocks.add(switch (axis) {
@@ -90,7 +92,6 @@ public class Hammer5x5OverlayRenderer {
                     case X -> target.offset(0, a, b);
                     case Z -> target.offset(a, b, 0);
                 });
-
         return blocks;
     }
 }
