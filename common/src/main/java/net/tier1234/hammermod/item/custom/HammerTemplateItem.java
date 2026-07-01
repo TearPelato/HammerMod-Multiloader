@@ -7,16 +7,16 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.util.Util;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 
 import java.util.List;
 import java.util.function.Consumer;
 
-public class HammerTemplateItem
-       // extends Item
+public class HammerTemplateItem extends Item
 {
-   /* private static final ChatFormatting TITLE_FORMAT = ChatFormatting.GRAY;
+    private static final ChatFormatting TITLE_FORMAT = ChatFormatting.GRAY;
     private static final ChatFormatting DESCRIPTION_FORMAT = ChatFormatting.BLUE;
     private static final String DESCRIPTION_ID = Util.makeDescriptionId("item", Identifier.withDefaultNamespace("smithing_template"));
     private static final Component INGREDIENTS_TITLE = Component.translatable(Util.makeDescriptionId("item", Identifier.withDefaultNamespace("smithing_template.ingredients"))).withStyle(TITLE_FORMAT);
@@ -44,20 +44,20 @@ public class HammerTemplateItem
 
 
 
-    public HammerTemplateItem(Component p_266834_, Component p_267043_, Component p_267048_, Component p_267278_, Component p_267090_, List<Identifier> p_266755_, List<Identifier> p_267060_) {
-        super(new Properties().fireResistant());
-        this.appliesTo = p_266834_;
-        this.ingredients = p_267043_;
-        this.upgradeDescription = p_267048_;
-        this.baseSlotDescription = p_267278_;
-        this.additionsSlotDescription = p_267090_;
-        this.baseSlotEmptyIcons = p_266755_;
-        this.additionalSlotEmptyIcons = p_267060_;
+    public HammerTemplateItem(Component appliesTo, Component ingredients, Component upgradeDescription, Component baseSlotDescription, Component additionsSlotDescription, List<Identifier> baseSlotEmptyIcons, List<Identifier> additionalSlotEmptyIcons, Properties properties) {
+        super(properties.fireResistant().rarity(Rarity.UNCOMMON));
+        this.appliesTo = appliesTo;
+        this.ingredients = ingredients;
+        this.upgradeDescription = upgradeDescription;
+        this.baseSlotDescription = baseSlotDescription;
+        this.additionsSlotDescription = additionsSlotDescription;
+        this.baseSlotEmptyIcons = baseSlotEmptyIcons;
+        this.additionalSlotEmptyIcons = additionalSlotEmptyIcons;
     }
 
 
-    public static HammerTemplateItem createhammerUpgradeTemplate() {
-        return new HammerTemplateItem(HAMMER_UPGRADE_APPLIES_TO, HAMMER_UPGRADE_INGREDIENTS, HAMMER_UPGRADE, HAMMER_UPGRADE_BASE_SLOT_DESCRIPTION, HAMMER_UPGRADE_ADDITIONS_SLOT_DESCRIPTION, createhammerUpgradeIconList(), createhammerUpgradeMaterialList());
+    public static HammerTemplateItem createHammerUpgradeTemplate(Properties properties) {
+        return new HammerTemplateItem(HAMMER_UPGRADE_APPLIES_TO, HAMMER_UPGRADE_INGREDIENTS, HAMMER_UPGRADE, HAMMER_UPGRADE_BASE_SLOT_DESCRIPTION, HAMMER_UPGRADE_ADDITIONS_SLOT_DESCRIPTION, createhammerUpgradeIconList(), createhammerUpgradeMaterialList(), properties);
     }
 
 
@@ -70,14 +70,14 @@ public class HammerTemplateItem
     }
 
 
-    public void appendHoverText(ItemStack p_267313_, TooltipContext p_339591_, TooltipDisplay p_266820_, Consumer<Component> p_266830,TooltipFlag p_266857_) {
-        super.appendHoverText(p_267313_, p_339591_, p_266820_, p_266830, p_266857_);
-        p_266820_.add(this.upgradeDescription);
-        p_266820_.add(CommonComponents.EMPTY);
-        p_266820_.add(APPLIES_TO_TITLE);
-        p_266820_.add(CommonComponents.space().append(this.appliesTo));
-        p_266820_.add(INGREDIENTS_TITLE);
-        p_266820_.add(CommonComponents.space().append(this.ingredients));
+    public void appendHoverText(ItemStack pStack, Item.TooltipContext pContext, TooltipDisplay tooltipDisplay, Consumer<Component> components, TooltipFlag tooltipFlag) {
+        super.appendHoverText(pStack, pContext, tooltipDisplay, components, tooltipFlag);
+        components.accept(this.upgradeDescription);
+        components.accept(CommonComponents.EMPTY);
+        components.accept(APPLIES_TO_TITLE);
+        components.accept(CommonComponents.space().append(this.appliesTo));
+        components.accept(INGREDIENTS_TITLE);
+        components.accept(CommonComponents.space().append(this.ingredients));
     }
 
     public Component getBaseSlotDescription() {
@@ -94,6 +94,6 @@ public class HammerTemplateItem
 
     public List<Identifier> getAdditionalSlotEmptyIcons() {
         return this.additionalSlotEmptyIcons;
-    }*/
+    }
 
 }

@@ -59,5 +59,8 @@
   "enchantment.hammer_mod.land_breaker": "Land Breaker",
 
 
-  "hammer_mod.configuration.veinminer_group": "VeinMiner Block Config"
+  "hammer_mod.configuration.veinminer_group": "VeinMiner Block Config",
+  "item.hammer_mod.hammer_upgrade.desc": "Hammer Smithing Template",
+  "item.hammer_mod.hammer_upgrade.applies_to.desc": "Tiny Stick, Tiny and Giants Heads",
+  "item.hammer_mod.hammer_upgrade.ingredients.desc": "Tiny Stick, Tiny and Giants Heads"
 }

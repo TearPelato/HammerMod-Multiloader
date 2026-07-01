@@ -3,13 +3,10 @@ package net.tier1234.hammermod.registries;
 import com.mrcrayfish.framework.api.registry.RegistryContainer;
 import com.mrcrayfish.framework.api.registry.RegistryEntry;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SmithingTemplateItem;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ToolMaterial;
 import net.tier1234.hammermod.Constants;
-import net.tier1234.hammermod.item.custom.HammerItem;
-import net.tier1234.hammermod.item.custom.HammerItem2x2;
-import net.tier1234.hammermod.item.custom.HammerItem5x5;
-import net.tier1234.hammermod.item.custom.MagnetItem;
+import net.tier1234.hammermod.item.custom.*;
 
 @RegistryContainer
 public class ModItems {
@@ -108,8 +105,8 @@ public static final RegistryEntry<HammerItem2x2> TINY_STONE_HAMMER = RegistryEnt
 
 
     //Template Registry
-    public static final RegistryEntry<SmithingTemplateItem> HAMEMR_SMITHING_TEMPLATE = RegistryEntry.item(Constants.id("hammer_smithing_template"),
-            SmithingTemplateItem::createNetheriteUpgradeTemplate, Item.Properties::new);
+    public static final RegistryEntry<HammerTemplateItem> HAMEMR_SMITHING_TEMPLATE = RegistryEntry.item(Constants.id("hammer_smithing_template"),
+            HammerTemplateItem::createHammerUpgradeTemplate, Item.Properties::new);
 
 
 //Simple Items Registries
