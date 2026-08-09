@@ -8,8 +8,9 @@
         "${mod_author}"
     ],
     "contact": {
-        "homepage": "https://fabricmc.net/",
-        "sources": "https://github.com/FabricMC/fabric-example-mod"
+        "homepage": "https://github.com/TearPelato/HammerMod-Multiloader",
+        "sources": "https://github.com/TearPelato/HammerMod-Multiloader",
+        "issues": "https://github.com/TearPelato/HammerMod-Multiloader/issues"
     },
     "license": "${license}",
     "icon": "stone.png",

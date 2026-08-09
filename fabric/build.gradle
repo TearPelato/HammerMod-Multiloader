@@ -19,9 +19,9 @@ dependencies {
     implementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     implementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     implementation "com.mrcrayfish:framework-fabric:${framework_version}+${minecraft_version}"
-   /* implementation "curse.maven:configured-457570:7943179"
-    implementation "curse.maven:menulogue-682371:7943163"
-    implementation "curse.maven:catalogue-459701:7943158"*/
+
+    implementation "curse.maven:menulogue-682371:8403613"
+    implementation "curse.maven:catalogue-459701:8403590"
 
 }
 
