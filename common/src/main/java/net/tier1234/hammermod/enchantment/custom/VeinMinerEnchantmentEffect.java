@@ -43,7 +43,7 @@ public class VeinMinerEnchantmentEffect implements EnchantmentEntityEffect {
         Block targetBlock = startState.getBlock();
         if (startState.isAir() || startState.getDestroySpeed(serverLevel, startPos) < 0)
             return;
-        int maxBlocks = Config.CLIENT.veinminerRange.get();
+        int maxBlocks = Config.veinminerRange.get();
         Vec3 eyePos = user.getEyePosition(1f);
         Vec3 lookVec = user.getViewVector(1f).scale(6f);
         BlockHitResult traceResult = serverLevel.clip(new ClipContext(

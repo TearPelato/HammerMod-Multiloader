@@ -93,7 +93,7 @@ public class FabricModEvents {
                     Block targetBlock = targetState.getBlock();
 
                     if (!targetState.isAir() && targetState.getDestroySpeed(world, pos) >= 0) {
-                        int maxBlocks = Config.CLIENT.veinminerRange.get();
+                        int maxBlocks = Config.veinminerRange.get();
 
                         Queue<BlockPos> queue = new ArrayDeque<>();
                         Set<BlockPos> visited = new HashSet<>();

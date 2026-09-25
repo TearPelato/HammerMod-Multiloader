@@ -54,9 +54,10 @@ repositories {
 
 dependencies {
     implementation "net.neoforged:neoforge:${neoforge_version}"
-    implementation "com.mrcrayfish:framework-neoforge:${minecraft_version}-${framework_version}"
+    implementation "net.tearpelato:craftcorelib-neoforge-1.21.1:${craftcorelib_version}"
     implementation "curse.maven:configured-457570:7276577"
     implementation "curse.maven:catalogue-459701:6926815"
+
 }
 
 sourceSets.main.resources {
