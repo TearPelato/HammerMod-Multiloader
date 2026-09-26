@@ -15,7 +15,7 @@ public class HammerMod implements ModInitializer {
         ModItems.init();
         ObjectRegistries.createAll(Constants.MOD_ID);
         FabricModEvents.init();
-        ModEnchantmentEffects.register();
+        ModEnchantmentEffects.init();
         Config.init();
     }
 }

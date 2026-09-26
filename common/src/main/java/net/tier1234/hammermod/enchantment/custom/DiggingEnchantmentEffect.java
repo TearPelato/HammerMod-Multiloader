@@ -16,7 +16,7 @@ import net.minecraft.world.phys.Vec3;
 
 public class DiggingEnchantmentEffect implements EnchantmentEntityEffect {
 
-    public static final MapCodec<DiggingEnchantmentEffect> CODEC =
+    public static final MapCodec<EnchantmentEntityEffect> CODEC =
             MapCodec.unit(DiggingEnchantmentEffect::new);
 
     @Override

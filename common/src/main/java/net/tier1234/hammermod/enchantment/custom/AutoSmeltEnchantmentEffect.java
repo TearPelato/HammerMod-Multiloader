@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AutoSmeltEnchantmentEffect implements EnchantmentEntityEffect {
-    public static final MapCodec<AutoSmeltEnchantmentEffect> CODEC =
+    public static final MapCodec<EnchantmentEntityEffect> CODEC =
             MapCodec.unit(AutoSmeltEnchantmentEffect::new);
 
     @Override

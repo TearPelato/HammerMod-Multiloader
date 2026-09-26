@@ -25,7 +25,7 @@ import java.util.Set;
 
 public class VeinMinerEnchantmentEffect implements EnchantmentEntityEffect {
 
-    public static final MapCodec<VeinMinerEnchantmentEffect> CODEC =
+    public static final MapCodec<EnchantmentEntityEffect> CODEC =
             MapCodec.unit(VeinMinerEnchantmentEffect::new);
 
     @Override

@@ -2,11 +2,12 @@ package net.tier1234.hammermod;
 
 import net.tearpelato.craftcorelib.api.config.ConfigCategory;
 import net.tearpelato.craftcorelib.api.config.ConfigManager;
+import net.tearpelato.craftcorelib.api.config.ConfigType;
 import net.tearpelato.craftcorelib.api.config.ConfigValue;
 
 public class Config {
 
-    public static final ConfigCategory GENERAL = ConfigCategory.create("general")
+    public static final ConfigCategory GENERAL = ConfigCategory.create("general", ConfigType.CLIENT)
             .title("general");
 
     public static final ConfigValue<Integer> veinminerRange = GENERAL
