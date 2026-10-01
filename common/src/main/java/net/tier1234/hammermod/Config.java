@@ -7,7 +7,7 @@ import net.tearpelato.craftcorelib.api.config.ConfigValue;
 
 public class Config {
 
-    public static final ConfigCategory GENERAL = ConfigCategory.create("general", ConfigType.CLIENT)
+    public static final ConfigCategory GENERAL = ConfigCategory.create("general", ConfigType.COMMON)
             .title("general");
 
     public static final ConfigValue<Integer> veinminerRange = GENERAL
